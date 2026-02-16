@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Resource Planning System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #0F172A;
@@ -285,10 +288,25 @@
             font-size: 24px;
         }
 
-        .stat-icon.blue { background: rgba(59, 130, 246, 0.1); color: var(--secondary); }
-        .stat-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--accent); }
-        .stat-icon.orange { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
-        .stat-icon.red { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+        .stat-icon.blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--secondary);
+        }
+
+        .stat-icon.green {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+        }
+
+        .stat-icon.orange {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
 
         .stat-label {
             font-size: 13px;
@@ -311,8 +329,13 @@
             font-weight: 600;
         }
 
-        .stat-change.positive { color: var(--accent); }
-        .stat-change.negative { color: var(--danger); }
+        .stat-change.positive {
+            color: var(--accent);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
 
         /* Data Table */
         .table-container {
@@ -518,6 +541,7 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -622,7 +646,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Tabs */
@@ -688,8 +714,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Custom Scrollbar */
@@ -748,8 +781,15 @@
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tutorial-content {
@@ -913,8 +953,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .achievement-name {
@@ -973,6 +1020,576 @@
         .scenario-actions {
             display: flex;
             gap: 12px;
+        }
+
+        /* Knowledge Base Styles */
+        .kb-search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .kb-search-container input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+            font-size: 15px;
+            color: var(--text);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .kb-search-container input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .kb-search-container .kb-search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .kb-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .kb-category-pill {
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--text-light);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .kb-category-pill:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        .kb-category-pill.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .kb-category-pill .pill-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 8px;
+            border-radius: 100px;
+            font-size: 11px;
+        }
+
+        .kb-category-pill.active .pill-count {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .kb-article-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 0;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .kb-article-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .kb-article-card.expanded {
+            border-color: var(--secondary);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+        }
+
+        .kb-article-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 24px;
+            gap: 16px;
+        }
+
+        .kb-article-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .kb-article-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .kb-article-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .kb-article-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .kb-article-meta .kb-tag {
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .kb-tag-beginner {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .kb-tag-intermediate {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .kb-tag-advanced {
+            background: #fce7f3;
+            color: #db2777;
+        }
+
+        .kb-read-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .kb-article-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kb-bookmark-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 18px;
+        }
+
+        .kb-bookmark-btn:hover {
+            color: var(--secondary);
+            background: var(--bg);
+        }
+
+        .kb-bookmark-btn.bookmarked {
+            color: #f59e0b;
+        }
+
+        .kb-expand-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .kb-expand-btn:hover {
+            color: var(--secondary);
+            background: var(--bg);
+        }
+
+        .kb-expand-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        .kb-article-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .kb-article-card.expanded .kb-article-body {
+            max-height: 800px;
+            padding: 0 24px 24px 24px;
+        }
+
+        .kb-article-content {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .kb-article-content h4 {
+            color: var(--text);
+            font-size: 15px;
+            margin: 16px 0 8px;
+        }
+
+        .kb-article-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .kb-article-content ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        .kb-article-content ul li {
+            margin-bottom: 6px;
+        }
+
+        .kb-article-content .kb-tip-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.06));
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .kb-article-content .kb-warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.06));
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        .kb-related-nav {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .kb-related-link {
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--secondary);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .kb-related-link:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .kb-stats-strip {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .kb-stat-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .kb-stat-chip .kb-stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .kb-stat-chip .kb-stat-info .kb-stat-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .kb-stat-chip .kb-stat-info .kb-stat-label {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .kb-no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .kb-no-results .kb-no-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .kb-no-results h3 {
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .kb-highlight {
+            background: rgba(99, 102, 241, 0.15);
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+
+        /* Company Sandbox Styles */
+        .sandbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .sandbox-company-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sandbox-company-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .sandbox-company-card.active-sandbox {
+            border-color: #10b981;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+        }
+
+        .sandbox-company-card.active-sandbox::after {
+            content: '✓ ACTIVE';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #10b981;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .sandbox-card-header {
+            padding: 28px 24px 20px;
+            position: relative;
+        }
+
+        .sandbox-card-header .sandbox-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .sandbox-card-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .sandbox-card-header .sandbox-industry {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .sandbox-card-body {
+            padding: 20px 24px;
+        }
+
+        .sandbox-card-body .sandbox-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .sandbox-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .sandbox-stat-item {
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .sandbox-stat-item .sandbox-stat-val {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .sandbox-stat-item .sandbox-stat-lbl {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .sandbox-card-footer {
+            padding: 0 24px 24px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .sandbox-load-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sandbox-load-btn.primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .sandbox-load-btn.primary:hover {
+            background: #4f46e5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .sandbox-load-btn.outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .sandbox-load-btn.outline:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .sandbox-active-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.05));
+            border: 2px solid rgba(16, 185, 129, 0.2);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .sandbox-active-banner .sandbox-active-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .sandbox-active-banner .sandbox-active-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .sandbox-active-banner .sandbox-active-info p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .sandbox-active-banner .sandbox-reset-btn {
+            margin-left: auto;
+            padding: 8px 20px;
+            border: 2px solid #ef4444;
+            background: transparent;
+            color: #ef4444;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sandbox-active-banner .sandbox-reset-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .sandbox-tag-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .sandbox-tag {
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .progress-bar {
@@ -1061,6 +1678,7 @@
                 opacity: 0;
                 transform: translateX(100%);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1168,8 +1786,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .path-content {
@@ -1308,7 +1933,7 @@
             white-space: nowrap;
         }
 
-        .chart-point:hover + .chart-tooltip {
+        .chart-point:hover+.chart-tooltip {
             opacity: 1;
         }
 
@@ -1356,7 +1981,7 @@
             font-size: 12px;
             font-weight: 600;
             color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .metric-comparison {
@@ -1521,6 +2146,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -1532,7 +2158,8 @@
                 <div class="nav-section-title">Main</div>
                 <div class="nav-item active" data-page="dashboard">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard
                 </div>
@@ -1542,27 +2169,38 @@
                 <div class="nav-section-title">🎓 Learning</div>
                 <div class="nav-item" data-page="practice">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                     Practice Scenarios
                 </div>
                 <div class="nav-item" data-page="learning-path">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                     </svg>
                     Learning Path
                 </div>
                 <div class="nav-item" data-page="achievements">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                     </svg>
                     Achievements
                 </div>
                 <div class="nav-item" data-page="knowledge-base">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                     Knowledge Base
+                </div>
+                <div class="nav-item" data-page="sandbox">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Company Sandbox
                 </div>
             </div>
 
@@ -1570,19 +2208,22 @@
                 <div class="nav-section-title">Operations</div>
                 <div class="nav-item" data-page="inventory">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                     Inventory
                 </div>
                 <div class="nav-item" data-page="sales">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                     Sales
                 </div>
                 <div class="nav-item" data-page="purchases">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     Purchases
                 </div>
@@ -1592,13 +2233,15 @@
                 <div class="nav-section-title">Resources</div>
                 <div class="nav-item" data-page="hr">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     Human Resources
                 </div>
                 <div class="nav-item" data-page="finance">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Finance
                 </div>
@@ -1608,20 +2251,24 @@
                 <div class="nav-section-title">System</div>
                 <div class="nav-item" data-page="analytics">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                     Analytics Dashboard
                 </div>
                 <div class="nav-item" data-page="reports">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     Reports
                 </div>
                 <div class="nav-item" data-page="settings">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     Settings
                 </div>
@@ -1635,23 +2282,27 @@
         <header class="header">
             <div class="search-bar">
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <input type="text" placeholder="Search anything...">
+                <input type="text" placeholder="Search anything... (Press Enter)" onkeyup="handleGlobalSearch(event)">
             </div>
             <div class="header-actions">
-                <button class="icon-btn">
+                <button class="icon-btn"
+                    onclick="showNotification('Notifications', 'You have 3 unread messages from system.')">
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                     <span class="badge">3</span>
                 </button>
                 <button class="icon-btn">
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                     </svg>
                 </button>
-                <div class="user-profile">
+                <div class="user-profile" onclick="loadPage('settings')">
                     <div class="user-avatar">AD</div>
                     <div>
                         <div style="font-weight: 600; font-size: 14px;">Admin User</div>
@@ -1679,7 +2330,8 @@
                 <h3 class="modal-title" id="modalTitle">Modal Title</h3>
                 <button class="close-btn" onclick="closeModal()">
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -1688,6 +2340,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Scenario Widget -->
+    <div id="scenarioWidget" style="position: fixed; bottom: 24px; left: 24px; z-index: 1000;"></div>
 
     <script>
         // Currency Formatter
@@ -1698,23 +2353,23 @@
         // Data Storage
         const appData = {
             inventory: JSON.parse(localStorage.getItem('inventory')) || [
-                { id: 1, name: 'Laptop Dell XPS 15', sku: 'LAP-001', quantity: 45, price: 108000.00, category: 'Electronics', status: 'In Stock' },
-                { id: 2, name: 'Office Chair Premium', sku: 'FUR-002', quantity: 12, price: 29000.00, category: 'Furniture', status: 'Low Stock' },
-                { id: 3, name: 'Wireless Mouse', sku: 'ACC-003', quantity: 150, price: 2500.00, category: 'Accessories', status: 'In Stock' },
-                { id: 4, name: 'USB-C Hub', sku: 'ACC-004', quantity: 5, price: 4200.00, category: 'Accessories', status: 'Critical' },
-                { id: 5, name: 'Monitor 27" 4K', sku: 'MON-005', quantity: 28, price: 37500.00, category: 'Electronics', status: 'In Stock' }
+                { id: 1, name: 'Laptop Dell XPS 15', sku: 'LAP-001', hsnCode: '8471', gstRate: 18, quantity: 45, price: 108000.00, category: 'Electronics', status: 'In Stock' },
+                { id: 2, name: 'Office Chair Premium', sku: 'FUR-002', hsnCode: '9401', gstRate: 18, quantity: 12, price: 29000.00, category: 'Furniture', status: 'Low Stock' },
+                { id: 3, name: 'Wireless Mouse', sku: 'ACC-003', hsnCode: '8471', gstRate: 18, quantity: 150, price: 2500.00, category: 'Accessories', status: 'In Stock' },
+                { id: 4, name: 'USB-C Hub', sku: 'ACC-004', hsnCode: '8473', gstRate: 18, quantity: 5, price: 4200.00, category: 'Accessories', status: 'Critical' },
+                { id: 5, name: 'Monitor 27" 4K', sku: 'MON-005', hsnCode: '8528', gstRate: 18, quantity: 28, price: 37500.00, category: 'Electronics', status: 'In Stock' }
             ],
             sales: JSON.parse(localStorage.getItem('sales')) || [
-                { id: 1, orderNumber: 'SO-2024-001', customer: 'Acme Corp', amount: 1285000.00, date: '2024-02-15', status: 'Completed' },
-                { id: 2, orderNumber: 'SO-2024-002', customer: 'Tech Solutions Inc', amount: 685000.00, date: '2024-02-14', status: 'Pending' },
-                { id: 3, orderNumber: 'SO-2024-003', customer: 'Global Enterprises', amount: 1835000.00, date: '2024-02-13', status: 'Completed' },
-                { id: 4, orderNumber: 'SO-2024-004', customer: 'Start-up Hub', amount: 465000.00, date: '2024-02-12', status: 'Processing' },
-                { id: 5, orderNumber: 'SO-2024-005', customer: 'Innovation Labs', amount: 1555000.00, date: '2024-02-11', status: 'Completed' }
+                { id: 1, orderNumber: 'SO-2024-001', customer: 'Acme Corp', amount: 1285000.00, gstRate: 18, taxableAmount: 1089406.78, cgst: 98046.61, sgst: 98046.61, totalWithGst: 1285000.00, date: '2024-02-15', status: 'Completed' },
+                { id: 2, orderNumber: 'SO-2024-002', customer: 'Tech Solutions Inc', amount: 685000.00, gstRate: 18, taxableAmount: 580508.47, cgst: 52245.76, sgst: 52245.76, totalWithGst: 685000.00, date: '2024-02-14', status: 'Pending' },
+                { id: 3, orderNumber: 'SO-2024-003', customer: 'Global Enterprises', amount: 1835000.00, gstRate: 18, taxableAmount: 1555084.75, cgst: 139957.63, sgst: 139957.63, totalWithGst: 1835000.00, date: '2024-02-13', status: 'Completed' },
+                { id: 4, orderNumber: 'SO-2024-004', customer: 'Start-up Hub', amount: 465000.00, gstRate: 18, taxableAmount: 394067.80, cgst: 35466.10, sgst: 35466.10, totalWithGst: 465000.00, date: '2024-02-12', status: 'Processing' },
+                { id: 5, orderNumber: 'SO-2024-005', customer: 'Innovation Labs', amount: 1555000.00, gstRate: 18, taxableAmount: 1317796.61, cgst: 118601.69, sgst: 118601.69, totalWithGst: 1555000.00, date: '2024-02-11', status: 'Completed' }
             ],
             purchases: JSON.parse(localStorage.getItem('purchases')) || [
-                { id: 1, poNumber: 'PO-2024-001', supplier: 'Dell Technologies', amount: 3740000.00, date: '2024-02-10', status: 'Received' },
-                { id: 2, poNumber: 'PO-2024-002', supplier: 'Office Depot', amount: 740000.00, date: '2024-02-08', status: 'Pending' },
-                { id: 3, poNumber: 'PO-2024-003', supplier: 'Tech Wholesale', amount: 1040000.00, date: '2024-02-05', status: 'Received' }
+                { id: 1, poNumber: 'PO-2024-001', supplier: 'Dell Technologies', amount: 3740000.00, gstRate: 18, taxableAmount: 3169491.53, cgst: 285254.24, sgst: 285254.24, totalWithGst: 3740000.00, date: '2024-02-10', status: 'Received' },
+                { id: 2, poNumber: 'PO-2024-002', supplier: 'Office Depot', amount: 740000.00, gstRate: 18, taxableAmount: 627118.64, cgst: 56440.68, sgst: 56440.68, totalWithGst: 740000.00, date: '2024-02-08', status: 'Pending' },
+                { id: 3, poNumber: 'PO-2024-003', supplier: 'Tech Wholesale', amount: 1040000.00, gstRate: 18, taxableAmount: 881355.93, cgst: 79322.03, sgst: 79322.03, totalWithGst: 1040000.00, date: '2024-02-05', status: 'Received' }
             ],
             employees: JSON.parse(localStorage.getItem('employees')) || [
                 { id: 1, name: 'John Smith', position: 'Sales Manager', department: 'Sales', salary: 6225000, email: 'john.smith@company.com', status: 'Active' },
@@ -1731,7 +2386,7 @@
 
         // Navigation
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
                 const page = this.getAttribute('data-page');
@@ -1745,7 +2400,7 @@
             content.innerHTML = '';
             content.classList.add('fade-in');
 
-            switch(page) {
+            switch (page) {
                 case 'dashboard':
                     loadDashboard();
                     break;
@@ -1781,7 +2436,7 @@
             const totalRevenue = appData.sales.reduce((sum, sale) => sum + sale.amount, 0);
             const totalInventoryValue = appData.inventory.reduce((sum, item) => sum + (item.quantity * item.price), 0);
             const lowStockItems = appData.inventory.filter(item => item.quantity < 20).length;
-            
+
             document.getElementById('pageContent').innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title">Dashboard</h1>
@@ -1913,11 +2568,11 @@
                     <div class="table-header">
                         <h3 class="table-title">Products</h3>
                         <div class="table-actions">
-                            <button class="btn btn-secondary">
+                            <button class="btn btn-secondary" onclick="toggleLowStockFilter(this)">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
                                 </svg>
-                                Filter
+                                Filter Low Stock
                             </button>
                             <button class="btn btn-primary" onclick="openInventoryModal()">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1932,9 +2587,11 @@
                             <tr>
                                 <th>Product Name</th>
                                 <th>SKU</th>
+                                <th>HSN Code</th>
                                 <th>Category</th>
-                                <th>Quantity</th>
+                                <th>Qty</th>
                                 <th>Price</th>
+                                <th>GST %</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -1947,19 +2604,20 @@
             `;
         }
 
-        function renderInventoryTable() {
-            return appData.inventory.map(item => `
+        function renderInventoryTable(data = appData.inventory) {
+            return data.map(item => `
                 <tr>
                     <td style="font-weight: 600;">${item.name}</td>
                     <td>${item.sku}</td>
+                    <td><code style="background: var(--bg); padding: 2px 8px; border-radius: 4px; font-size: 12px;">${item.hsnCode || '—'}</code></td>
                     <td>${item.category}</td>
                     <td>${item.quantity}</td>
                     <td>${formatCurrency(item.price)}</td>
+                    <td><span style="color: var(--secondary); font-weight: 600;">${item.gstRate || 0}%</span></td>
                     <td>
-                        <span class="status-badge ${
-                            item.quantity > 20 ? 'success' : 
-                            item.quantity > 10 ? 'pending' : 'danger'
-                        }">
+                        <span class="status-badge ${item.quantity > 20 ? 'success' :
+                    item.quantity > 10 ? 'pending' : 'danger'
+                }">
                             ${item.status}
                         </span>
                     </td>
@@ -1984,7 +2642,7 @@
         function openInventoryModal(itemId = null) {
             const item = itemId ? appData.inventory.find(i => i.id === itemId) : null;
             const modalTitle = item ? 'Edit Product' : 'Add New Product';
-            
+
             document.getElementById('modalTitle').textContent = modalTitle;
             document.getElementById('modalBody').innerHTML = `
                 <form id="inventoryForm" onsubmit="saveInventoryItem(event, ${itemId})">
@@ -1992,9 +2650,15 @@
                         <label class="form-label">Product Name</label>
                         <input type="text" class="form-input" name="name" value="${item?.name || ''}" required>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">SKU</label>
-                        <input type="text" class="form-input" name="sku" value="${item?.sku || ''}" required>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">SKU</label>
+                            <input type="text" class="form-input" name="sku" value="${item?.sku || ''}" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">HSN Code</label>
+                            <input type="text" class="form-input" name="hsnCode" value="${item?.hsnCode || ''}" placeholder="e.g. 8471" required>
+                        </div>
                     </div>
                     <div class="grid-2">
                         <div class="form-group">
@@ -2006,13 +2670,28 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="form-label">GST Rate (%)</label>
+                            <select class="form-input" name="gstRate" required>
+                                <option value="0" ${item?.gstRate === 0 ? 'selected' : ''}>0% (Exempt)</option>
+                                <option value="5" ${item?.gstRate === 5 ? 'selected' : ''}>5%</option>
+                                <option value="12" ${item?.gstRate === 12 ? 'selected' : ''}>12%</option>
+                                <option value="18" ${(item?.gstRate === 18 || !item) ? 'selected' : ''}>18%</option>
+                                <option value="28" ${item?.gstRate === 28 ? 'selected' : ''}>28%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-group">
                             <label class="form-label">Quantity</label>
                             <input type="number" class="form-input" name="quantity" value="${item?.quantity || 0}" required>
                         </div>
+                        <div class="form-group">
+                            <label class="form-label">Price (excl. GST)</label>
+                            <input type="number" step="0.01" class="form-input" name="price" value="${item?.price || 0}" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Price</label>
-                        <input type="number" step="0.01" class="form-input" name="price" value="${item?.price || 0}" required>
+                    <div class="hint-box" style="margin-bottom: 20px; padding: 12px 16px;">
+                        <div style="font-size: 12px; color: var(--text-light);">Price with GST: <strong id="priceWithGst">₹0.00</strong></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
@@ -2020,19 +2699,33 @@
                     </div>
                 </form>
             `;
-            
+
             document.getElementById('modal').classList.add('active');
+
+            // Live GST price preview
+            const priceInput = document.querySelector('#inventoryForm [name="price"]');
+            const gstSelect = document.querySelector('#inventoryForm [name="gstRate"]');
+            function updateGstPreview() {
+                const price = parseFloat(priceInput.value) || 0;
+                const gst = parseInt(gstSelect.value) || 0;
+                const withGst = price + (price * gst / 100);
+                document.getElementById('priceWithGst').textContent = formatCurrency(withGst);
+            }
+            priceInput.addEventListener('input', updateGstPreview);
+            gstSelect.addEventListener('change', updateGstPreview);
+            updateGstPreview();
         }
 
         function saveInventoryItem(event, itemId) {
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
-            
+
             data.quantity = parseInt(data.quantity);
             data.price = parseFloat(data.price);
+            data.gstRate = parseInt(data.gstRate);
             data.status = data.quantity > 20 ? 'In Stock' : data.quantity > 10 ? 'Low Stock' : 'Critical';
-            
+
             if (itemId) {
                 const index = appData.inventory.findIndex(i => i.id === itemId);
                 appData.inventory[index] = { ...appData.inventory[index], ...data };
@@ -2040,7 +2733,7 @@
                 data.id = appData.inventory.length + 1;
                 appData.inventory.push(data);
             }
-            
+
             saveData('inventory');
             closeModal();
             loadInventory();
@@ -2070,7 +2763,7 @@
                     <div class="table-header">
                         <h3 class="table-title">Sales Orders</h3>
                         <div class="table-actions">
-                            <button class="btn btn-secondary">Export</button>
+                            <button class="btn btn-secondary" onclick="downloadReport('sales', 'csv')">Export</button>
                             <button class="btn btn-primary" onclick="openSalesModal()">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -2085,7 +2778,9 @@
                                 <th>Order Number</th>
                                 <th>Customer</th>
                                 <th>Date</th>
-                                <th>Amount</th>
+                                <th>Taxable Amt</th>
+                                <th>GST</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -2096,26 +2791,27 @@
                                     <td style="font-weight: 600;">${sale.orderNumber}</td>
                                     <td>${sale.customer}</td>
                                     <td>${sale.date}</td>
-                                    <td>${formatCurrency(sale.amount)}</td>
+                                    <td>${formatCurrency(sale.taxableAmount || sale.amount)}</td>
                                     <td>
-                                        <span class="status-badge ${
-                                            sale.status === 'Completed' ? 'success' : 
-                                            sale.status === 'Processing' ? 'pending' : 'pending'
-                                        }">
+                                        <span style="color: var(--secondary); font-weight: 600; font-size: 12px;">
+                                            ${sale.gstRate || 0}%
+                                        </span>
+                                        <div style="font-size: 11px; color: var(--text-light);">${formatCurrency((sale.cgst || 0) + (sale.sgst || 0))}</div>
+                                    </td>
+                                    <td style="font-weight: 600;">${formatCurrency(sale.totalWithGst || sale.amount)}</td>
+                                    <td>
+                                        <span class="status-badge ${sale.status === 'Completed' ? 'success' :
+                    sale.status === 'Processing' ? 'pending' : 'pending'
+                }">
                                             ${sale.status}
                                         </span>
                                     </td>
                                     <td>
                                         <div class="action-buttons">
-                                            <button class="action-btn" title="View">
+                                            <button class="action-btn" title="View GST Details" onclick="viewSaleGst(${sale.id})">
                                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                                </svg>
-                                            </button>
-                                            <button class="action-btn" title="Edit">
-                                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                                 </svg>
                                             </button>
                                         </div>
@@ -2128,6 +2824,25 @@
             `;
         }
 
+        // Inventory Filter
+        let inventoryFilterActive = false;
+        function toggleLowStockFilter(btn) {
+            inventoryFilterActive = !inventoryFilterActive;
+
+            if (inventoryFilterActive) {
+                btn.style.background = 'var(--secondary)';
+                btn.style.color = 'white';
+                const lowStock = appData.inventory.filter(i => i.quantity < 20);
+                document.getElementById('inventoryTable').innerHTML = renderInventoryTable(lowStock);
+                showNotification('Filter Applied', `Showing ${lowStock.length} low stock items`);
+            } else {
+                btn.style.background = 'var(--bg)';
+                btn.style.color = 'var(--text)';
+                document.getElementById('inventoryTable').innerHTML = renderInventoryTable();
+                showNotification('Filter Cleared', 'Showing all items');
+            }
+        }
+
         function openSalesModal() {
             document.getElementById('modalTitle').textContent = 'New Sales Order';
             document.getElementById('modalBody').innerHTML = `
@@ -2136,9 +2851,32 @@
                         <label class="form-label">Customer Name</label>
                         <input type="text" class="form-input" name="customer" required>
                     </div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Taxable Amount (excl. GST)</label>
+                            <input type="number" step="0.01" class="form-input" name="amount" id="salesAmount" oninput="updateSalesGstPreview()" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">GST Rate (%)</label>
+                            <select class="form-input" name="gstRate" id="salesGstRate" onchange="updateSalesGstPreview()" required>
+                                <option value="0">0% (Exempt)</option>
+                                <option value="5">5%</option>
+                                <option value="12">12%</option>
+                                <option value="18" selected>18%</option>
+                                <option value="28">28%</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label class="form-label">Order Amount</label>
-                        <input type="number" step="0.01" class="form-input" name="amount" required>
+                        <label class="form-label">GST Type</label>
+                        <select class="form-input" name="gstType" id="salesGstType" onchange="updateSalesGstPreview()">
+                            <option value="intra" selected>Intra-State (CGST + SGST)</option>
+                            <option value="inter">Inter-State (IGST)</option>
+                        </select>
+                    </div>
+                    <div class="hint-box" style="margin-bottom: 16px; padding: 16px;">
+                        <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--secondary);">🧾 GST Breakdown</div>
+                        <div id="salesGstBreakdown" style="font-size: 13px; display: grid; gap: 4px;"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Status</label>
@@ -2155,22 +2893,92 @@
                 </form>
             `;
             document.getElementById('modal').classList.add('active');
+            updateSalesGstPreview();
+        }
+
+        function updateSalesGstPreview() {
+            const amount = parseFloat(document.getElementById('salesAmount')?.value) || 0;
+            const rate = parseInt(document.getElementById('salesGstRate')?.value) || 0;
+            const type = document.getElementById('salesGstType')?.value || 'intra';
+            const gstAmount = amount * rate / 100;
+            const total = amount + gstAmount;
+
+            const bd = document.getElementById('salesGstBreakdown');
+            if (!bd) return;
+            if (type === 'intra') {
+                bd.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;"><span>Taxable Amount:</span> <strong>${formatCurrency(amount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>CGST @ ${rate / 2}%:</span> <strong>${formatCurrency(gstAmount / 2)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>SGST @ ${rate / 2}%:</span> <strong>${formatCurrency(gstAmount / 2)}</strong></div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px;"><span style="font-weight: 700;">Total with GST:</span> <strong style="color: var(--secondary);">${formatCurrency(total)}</strong></div>
+                `;
+            } else {
+                bd.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;"><span>Taxable Amount:</span> <strong>${formatCurrency(amount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>IGST @ ${rate}%:</span> <strong>${formatCurrency(gstAmount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px;"><span style="font-weight: 700;">Total with GST:</span> <strong style="color: var(--secondary);">${formatCurrency(total)}</strong></div>
+                `;
+            }
+        }
+
+        function viewSaleGst(saleId) {
+            const sale = appData.sales.find(s => s.id === saleId);
+            if (!sale) return;
+            const gstType = sale.igst ? 'Inter-State' : 'Intra-State';
+            document.getElementById('modalTitle').textContent = `GST Invoice — ${sale.orderNumber}`;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="display: grid; gap: 16px;">
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-label">Customer</div><div class="stat-value" style="font-size: 16px;">${sale.customer}</div></div>
+                        <div class="stat-card"><div class="stat-label">Date</div><div class="stat-value" style="font-size: 16px;">${sale.date}</div></div>
+                        <div class="stat-card"><div class="stat-label">GST Rate</div><div class="stat-value">${sale.gstRate || 0}%</div></div>
+                        <div class="stat-card"><div class="stat-label">Type</div><div class="stat-value" style="font-size: 14px;">${gstType}</div></div>
+                    </div>
+                    <div class="table-container" style="margin: 0;">
+                        <table>
+                            <tbody>
+                                <tr><td style="font-weight: 600;">Taxable Amount</td><td style="text-align: right;">${formatCurrency(sale.taxableAmount || sale.amount)}</td></tr>
+                                ${sale.igst ? `
+                                    <tr><td>IGST @ ${sale.gstRate}%</td><td style="text-align: right;">${formatCurrency(sale.igst)}</td></tr>
+                                ` : `
+                                    <tr><td>CGST @ ${(sale.gstRate || 0) / 2}%</td><td style="text-align: right;">${formatCurrency(sale.cgst || 0)}</td></tr>
+                                    <tr><td>SGST @ ${(sale.gstRate || 0) / 2}%</td><td style="text-align: right;">${formatCurrency(sale.sgst || 0)}</td></tr>
+                                `}
+                                <tr style="font-weight: 700; font-size: 16px; border-top: 2px solid var(--border);"><td>Total Amount</td><td style="text-align: right; color: var(--secondary);">${formatCurrency(sale.totalWithGst || sale.amount)}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal').classList.add('active');
         }
 
         function saveSalesOrder(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
-            
+
+            const taxableAmount = parseFloat(data.amount);
+            const gstRate = parseInt(data.gstRate);
+            const gstAmount = taxableAmount * gstRate / 100;
+            const totalWithGst = taxableAmount + gstAmount;
+            const gstType = data.gstType;
+
             const newSale = {
                 id: appData.sales.length + 1,
                 orderNumber: `SO-2024-${String(appData.sales.length + 1).padStart(3, '0')}`,
                 customer: data.customer,
-                amount: parseFloat(data.amount),
+                amount: totalWithGst,
+                taxableAmount: taxableAmount,
+                gstRate: gstRate,
+                cgst: gstType === 'intra' ? gstAmount / 2 : 0,
+                sgst: gstType === 'intra' ? gstAmount / 2 : 0,
+                igst: gstType === 'inter' ? gstAmount : 0,
+                totalWithGst: totalWithGst,
                 date: new Date().toISOString().split('T')[0],
                 status: data.status
             };
-            
+
             appData.sales.unshift(newSale);
             saveData('sales');
             closeModal();
@@ -2203,7 +3011,9 @@
                                 <th>PO Number</th>
                                 <th>Supplier</th>
                                 <th>Date</th>
-                                <th>Amount</th>
+                                <th>Taxable Amt</th>
+                                <th>GST</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -2214,7 +3024,14 @@
                                     <td style="font-weight: 600;">${po.poNumber}</td>
                                     <td>${po.supplier}</td>
                                     <td>${po.date}</td>
-                                    <td>${formatCurrency(po.amount)}</td>
+                                    <td>${formatCurrency(po.taxableAmount || po.amount)}</td>
+                                    <td>
+                                        <span style="color: var(--secondary); font-weight: 600; font-size: 12px;">
+                                            ${po.gstRate || 0}%
+                                        </span>
+                                        <div style="font-size: 11px; color: var(--text-light);">${formatCurrency((po.cgst || 0) + (po.sgst || 0) + (po.igst || 0))}</div>
+                                    </td>
+                                    <td style="font-weight: 600;">${formatCurrency(po.totalWithGst || po.amount)}</td>
                                     <td>
                                         <span class="status-badge ${po.status === 'Received' ? 'success' : 'pending'}">
                                             ${po.status}
@@ -2222,7 +3039,7 @@
                                     </td>
                                     <td>
                                         <div class="action-buttons">
-                                            <button class="action-btn" title="View">
+                                            <button class="action-btn" title="View GST Details" onclick="viewPurchaseGst(${po.id})">
                                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -2238,6 +3055,38 @@
             `;
         }
 
+        function viewPurchaseGst(poId) {
+            const po = appData.purchases.find(p => p.id === poId);
+            if (!po) return;
+            const gstType = po.igst ? 'Inter-State' : 'Intra-State';
+            document.getElementById('modalTitle').textContent = `GST Details — ${po.poNumber}`;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="display: grid; gap: 16px;">
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-label">Supplier</div><div class="stat-value" style="font-size: 16px;">${po.supplier}</div></div>
+                        <div class="stat-card"><div class="stat-label">Date</div><div class="stat-value" style="font-size: 16px;">${po.date}</div></div>
+                        <div class="stat-card"><div class="stat-label">GST Rate</div><div class="stat-value">${po.gstRate || 0}%</div></div>
+                        <div class="stat-card"><div class="stat-label">Type</div><div class="stat-value" style="font-size: 14px;">${gstType}</div></div>
+                    </div>
+                    <div class="table-container" style="margin: 0;">
+                        <table>
+                            <tbody>
+                                <tr><td style="font-weight: 600;">Taxable Amount</td><td style="text-align: right;">${formatCurrency(po.taxableAmount || po.amount)}</td></tr>
+                                ${po.igst ? `
+                                    <tr><td>IGST @ ${po.gstRate}%</td><td style="text-align: right;">${formatCurrency(po.igst)}</td></tr>
+                                ` : `
+                                    <tr><td>CGST @ ${(po.gstRate || 0) / 2}%</td><td style="text-align: right;">${formatCurrency(po.cgst || 0)}</td></tr>
+                                    <tr><td>SGST @ ${(po.gstRate || 0) / 2}%</td><td style="text-align: right;">${formatCurrency(po.sgst || 0)}</td></tr>
+                                `}
+                                <tr style="font-weight: 700; font-size: 16px; border-top: 2px solid var(--border);"><td>Total Amount</td><td style="text-align: right; color: var(--secondary);">${formatCurrency(po.totalWithGst || po.amount)}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modal').classList.add('active');
+        }
+
         function openPurchaseModal() {
             document.getElementById('modalTitle').textContent = 'New Purchase Order';
             document.getElementById('modalBody').innerHTML = `
@@ -2246,9 +3095,32 @@
                         <label class="form-label">Supplier Name</label>
                         <input type="text" class="form-input" name="supplier" required>
                     </div>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Order Amount (excl. GST)</label>
+                            <input type="number" step="0.01" class="form-input" name="amount" id="purchaseAmount" oninput="updatePurchaseGstPreview()" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">GST Rate (%)</label>
+                            <select class="form-input" name="gstRate" id="purchaseGstRate" onchange="updatePurchaseGstPreview()" required>
+                                <option value="0">0% (Exempt)</option>
+                                <option value="5">5%</option>
+                                <option value="12">12%</option>
+                                <option value="18" selected>18%</option>
+                                <option value="28">28%</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label class="form-label">Order Amount</label>
-                        <input type="number" step="0.01" class="form-input" name="amount" required>
+                        <label class="form-label">GST Type</label>
+                        <select class="form-input" name="gstType" id="purchaseGstType" onchange="updatePurchaseGstPreview()">
+                            <option value="intra" selected>Intra-State (CGST + SGST)</option>
+                            <option value="inter">Inter-State (IGST)</option>
+                        </select>
+                    </div>
+                    <div class="hint-box" style="margin-bottom: 16px; padding: 16px;">
+                        <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--secondary);">🧾 GST Breakdown</div>
+                        <div id="purchaseGstBreakdown" style="font-size: 13px; display: grid; gap: 4px;"></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Status</label>
@@ -2264,22 +3136,60 @@
                 </form>
             `;
             document.getElementById('modal').classList.add('active');
+            updatePurchaseGstPreview();
+        }
+
+        function updatePurchaseGstPreview() {
+            const amount = parseFloat(document.getElementById('purchaseAmount')?.value) || 0;
+            const rate = parseInt(document.getElementById('purchaseGstRate')?.value) || 0;
+            const type = document.getElementById('purchaseGstType')?.value || 'intra';
+            const gstAmount = amount * rate / 100;
+            const total = amount + gstAmount;
+
+            const bd = document.getElementById('purchaseGstBreakdown');
+            if (!bd) return;
+            if (type === 'intra') {
+                bd.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;"><span>Taxable Amount:</span> <strong>${formatCurrency(amount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>CGST @ ${rate / 2}%:</span> <strong>${formatCurrency(gstAmount / 2)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>SGST @ ${rate / 2}%:</span> <strong>${formatCurrency(gstAmount / 2)}</strong></div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px;"><span style="font-weight: 700;">Total with GST:</span> <strong style="color: var(--secondary);">${formatCurrency(total)}</strong></div>
+                `;
+            } else {
+                bd.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;"><span>Taxable Amount:</span> <strong>${formatCurrency(amount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between;"><span>IGST @ ${rate}%:</span> <strong>${formatCurrency(gstAmount)}</strong></div>
+                    <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 4px; margin-top: 4px;"><span style="font-weight: 700;">Total with GST:</span> <strong style="color: var(--secondary);">${formatCurrency(total)}</strong></div>
+                `;
+            }
         }
 
         function savePurchaseOrder(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
-            
+
+            const taxableAmount = parseFloat(data.amount);
+            const gstRate = parseInt(data.gstRate);
+            const gstAmount = taxableAmount * gstRate / 100;
+            const totalWithGst = taxableAmount + gstAmount;
+            const gstType = data.gstType;
+
             const newPO = {
                 id: appData.purchases.length + 1,
                 poNumber: `PO-2024-${String(appData.purchases.length + 1).padStart(3, '0')}`,
                 supplier: data.supplier,
-                amount: parseFloat(data.amount),
+                amount: totalWithGst,
+                taxableAmount: taxableAmount,
+                gstRate: gstRate,
+                cgst: gstType === 'intra' ? gstAmount / 2 : 0,
+                sgst: gstType === 'intra' ? gstAmount / 2 : 0,
+                igst: gstType === 'inter' ? gstAmount : 0,
+                totalWithGst: totalWithGst,
                 date: new Date().toISOString().split('T')[0],
                 status: data.status
             };
-            
+
             appData.purchases.unshift(newPO);
             saveData('purchases');
             closeModal();
@@ -2397,7 +3307,7 @@
             event.preventDefault();
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
-            
+
             const newEmployee = {
                 id: appData.employees.length + 1,
                 name: data.name,
@@ -2407,7 +3317,7 @@
                 salary: parseInt(data.salary),
                 status: 'Active'
             };
-            
+
             appData.employees.push(newEmployee);
             saveData('employees');
             closeModal();
@@ -2419,7 +3329,7 @@
             const totalRevenue = appData.sales.reduce((sum, sale) => sum + sale.amount, 0);
             const totalExpenses = appData.purchases.reduce((sum, po) => sum + po.amount, 0);
             const netProfit = totalRevenue - totalExpenses;
-            
+
             document.getElementById('pageContent').innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title">Finance & Accounting</h1>
@@ -2506,13 +3416,13 @@
 
             // Calculate monthly trends (simulated data based on current totals)
             const monthlyData = generateMonthlyTrends(totalRevenue, totalExpenses);
-            
+
             // Category breakdown
             const categoryData = calculateCategoryBreakdown();
-            
+
             // Sales by status
             const statusData = calculateStatusBreakdown();
-            
+
             // Top customers
             const topCustomers = calculateTopCustomers();
 
@@ -2541,7 +3451,7 @@
                         <div class="stat-label">Total Revenue</div>
                         <div class="stat-value">${formatCurrency(totalRevenue)}</div>
                         <div class="mini-chart">
-                            ${monthlyData.map(m => `<div class="mini-bar" style="height: ${(m.revenue/Math.max(...monthlyData.map(x => x.revenue)))*100}%;" title="${m.month}: ₹${(m.revenue/100000).toFixed(1)}L"></div>`).join('')}
+                            ${monthlyData.map(m => `<div class="mini-bar" style="height: ${(m.revenue / Math.max(...monthlyData.map(x => x.revenue))) * 100}%;" title="${m.month}: ₹${(m.revenue / 100000).toFixed(1)}L"></div>`).join('')}
                         </div>
                     </div>
 
@@ -2563,7 +3473,7 @@
                         <div class="stat-label">Inventory Value</div>
                         <div class="stat-value">${formatCurrency(inventoryValue)}</div>
                         <div class="mini-chart">
-                            ${appData.inventory.slice(0, 8).map(item => `<div class="mini-bar" style="height: ${(item.quantity/Math.max(...appData.inventory.map(x => x.quantity)))*100}%;"></div>`).join('')}
+                            ${appData.inventory.slice(0, 8).map(item => `<div class="mini-bar" style="height: ${(item.quantity / Math.max(...appData.inventory.map(x => x.quantity))) * 100}%;"></div>`).join('')}
                         </div>
                     </div>
 
@@ -2593,8 +3503,8 @@
                             ${monthlyData.map((m, i) => `
                                 <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
                                     <div style="display: flex; gap: 4px; width: 100%; height: 250px; align-items: flex-end; justify-content: center;">
-                                        <div class="chart-bar" style="height: ${(m.revenue/Math.max(...monthlyData.map(x => Math.max(x.revenue, x.expenses))))*100}%; width: 40%; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);" title="Revenue: ₹${(m.revenue/100000).toFixed(1)}L"></div>
-                                        <div class="chart-bar" style="height: ${(m.expenses/Math.max(...monthlyData.map(x => Math.max(x.revenue, x.expenses))))*100}%; width: 40%; background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);" title="Expenses: ₹${(m.expenses/100000).toFixed(1)}L"></div>
+                                        <div class="chart-bar" style="height: ${(m.revenue / Math.max(...monthlyData.map(x => Math.max(x.revenue, x.expenses)))) * 100}%; width: 40%; background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);" title="Revenue: ₹${(m.revenue / 100000).toFixed(1)}L"></div>
+                                        <div class="chart-bar" style="height: ${(m.expenses / Math.max(...monthlyData.map(x => Math.max(x.revenue, x.expenses)))) * 100}%; width: 40%; background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);" title="Expenses: ₹${(m.expenses / 100000).toFixed(1)}L"></div>
                                     </div>
                                     <div class="chart-label">${m.month}</div>
                                 </div>
@@ -2652,7 +3562,7 @@
                                 <div class="bar-row">
                                     <div class="bar-label">${cat.name}</div>
                                     <div class="bar-track">
-                                        <div class="bar-fill" style="width: ${(cat.count/Math.max(...categoryData.map(c => c.count)))*100}%;">
+                                        <div class="bar-fill" style="width: ${(cat.count / Math.max(...categoryData.map(c => c.count))) * 100}%;">
                                             <span class="bar-value">${cat.count}</span>
                                         </div>
                                     </div>
@@ -2674,8 +3584,8 @@
                                 <div class="bar-row">
                                     <div class="bar-label" style="font-size: 12px;">${customer.name}</div>
                                     <div class="bar-track">
-                                        <div class="bar-fill" style="width: ${(customer.revenue/Math.max(...topCustomers.map(c => c.revenue)))*100}%; background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
-                                            <span class="bar-value">₹${(customer.revenue/100000).toFixed(1)}L</span>
+                                        <div class="bar-fill" style="width: ${(customer.revenue / Math.max(...topCustomers.map(c => c.revenue))) * 100}%; background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                                            <span class="bar-value">₹${(customer.revenue / 100000).toFixed(1)}L</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2718,13 +3628,13 @@
                         <div class="metric-comparison">
                             <div class="metric-side">
                                 <div class="metric-label">Revenue</div>
-                                <div class="metric-value" style="color: var(--accent);">₹${(totalRevenue/100000).toFixed(1)}L</div>
+                                <div class="metric-value" style="color: var(--accent);">₹${(totalRevenue / 100000).toFixed(1)}L</div>
                                 <div class="trend-indicator trend-up">+12.5%</div>
                             </div>
                             <div class="metric-divider"></div>
                             <div class="metric-side">
                                 <div class="metric-label">Expenses</div>
-                                <div class="metric-value" style="color: var(--danger);">₹${(totalExpenses/100000).toFixed(1)}L</div>
+                                <div class="metric-value" style="color: var(--danger);">₹${(totalExpenses / 100000).toFixed(1)}L</div>
                                 <div class="trend-indicator trend-up">+8.3%</div>
                             </div>
                         </div>
@@ -2781,7 +3691,7 @@
                         <ul style="margin: 12px 0; padding-left: 20px; line-height: 1.8;">
                             <li>Your profit margin of ${profitMargin}% is ${profitMargin > 20 ? 'excellent' : profitMargin > 10 ? 'healthy' : 'below optimal'}</li>
                             <li>${appData.inventory.filter(i => i.quantity < 20).length} products need restocking to maintain inventory levels</li>
-                            <li>Top customer "${topCustomers[0].name}" contributes ${((topCustomers[0].revenue/totalRevenue)*100).toFixed(1)}% of total revenue</li>
+                            <li>Top customer "${topCustomers[0].name}" contributes ${((topCustomers[0].revenue / totalRevenue) * 100).toFixed(1)}% of total revenue</li>
                             <li>Average order value of ${formatCurrency(avgOrderValue)} shows strong customer purchasing power</li>
                         </ul>
                     </div>
@@ -2823,9 +3733,9 @@
                 statuses[sale.status] = (statuses[sale.status] || 0) + 1;
             });
             const colorMap = { 'Completed': '#10B981', 'Pending': '#F59E0B', 'Processing': '#3B82F6' };
-            return Object.entries(statuses).map(([status, count]) => ({ 
-                status, 
-                count, 
+            return Object.entries(statuses).map(([status, count]) => ({
+                status,
+                count,
                 color: colorMap[status] || '#64748B'
             }));
         }
@@ -2846,7 +3756,7 @@
             const profitMargin = ((totalRevenue - totalExpenses) / totalRevenue) * 100;
             const inventoryHealth = (1 - (appData.inventory.filter(i => i.quantity < 20).length / appData.inventory.length)) * 100;
             const salesEfficiency = (appData.sales.filter(s => s.status === 'Completed').length / appData.sales.length) * 100;
-            
+
             return Math.round((profitMargin * 0.4) + (inventoryHealth * 0.3) + (salesEfficiency * 0.3));
         }
 
@@ -2890,7 +3800,7 @@
             const netProfit = totalRevenue - totalExpenses;
             const inventoryValue = appData.inventory.reduce((sum, item) => sum + (item.quantity * item.price), 0);
             const avgSaleValue = totalRevenue / appData.sales.length;
-            
+
             document.getElementById('pageContent').innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title">Reports & Analytics</h1>
@@ -2973,7 +3883,7 @@
                                 <div class="practice-desc">Profit & loss statement with revenue, expenses, and margin analysis</div>
                                 <div class="practice-meta">
                                     <div class="practice-meta-item">Net Profit: ${formatCurrency(netProfit)}</div>
-                                    <div class="practice-meta-item">Margin: ${((netProfit/totalRevenue)*100).toFixed(1)}%</div>
+                                    <div class="practice-meta-item">Margin: ${((netProfit / totalRevenue) * 100).toFixed(1)}%</div>
                                 </div>
                             </div>
 
@@ -3009,7 +3919,7 @@
                                 <div class="practice-desc">Key performance indicators, trends, and business insights</div>
                                 <div class="practice-meta">
                                     <div class="practice-meta-item">Avg Sale: ${formatCurrency(avgSaleValue)}</div>
-                                    <div class="practice-meta-item">ROI: ${((netProfit/totalExpenses)*100).toFixed(1)}%</div>
+                                    <div class="practice-meta-item">ROI: ${((netProfit / totalExpenses) * 100).toFixed(1)}%</div>
                                 </div>
                             </div>
 
@@ -3045,13 +3955,13 @@
         // Generate and download reports
         function generateReport(reportType) {
             showNotification('Generating Report...', 'Please wait while we prepare your report');
-            
+
             setTimeout(() => {
                 let reportData = '';
                 let reportTitle = '';
                 let analyticsHTML = '';
 
-                switch(reportType) {
+                switch (reportType) {
                     case 'sales':
                         reportTitle = 'Sales Summary Report';
                         reportData = generateSalesReport();
@@ -3148,7 +4058,7 @@
                 </div>
             `;
             document.getElementById('modal').classList.add('active');
-            
+
             // Unlock achievement
             if (!achievements.financialReport.unlocked) {
                 achievements.financialReport.unlocked = true;
@@ -3160,7 +4070,7 @@
         function switchReportTab(tab) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
-            
+
             if (tab === 'preview') {
                 document.getElementById('reportPreview').style.display = 'block';
                 document.getElementById('reportAnalytics').style.display = 'none';
@@ -3203,7 +4113,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Completion Rate</div>
-                        <div class="stat-value">${((completed/appData.sales.length)*100).toFixed(0)}%</div>
+                        <div class="stat-value">${((completed / appData.sales.length) * 100).toFixed(0)}%</div>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -3265,19 +4175,19 @@
                     <h4>Products by Category</h4>
                     <div style="margin-top: 16px;">
                         ${categories.map(cat => {
-                            const count = appData.inventory.filter(i => i.category === cat).length;
-                            return `
+                const count = appData.inventory.filter(i => i.category === cat).length;
+                return `
                                 <div style="margin-bottom: 12px;">
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
                                         <span style="font-weight: 600;">${cat}</span>
                                         <span>${count} products</span>
                                     </div>
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: ${(count/appData.inventory.length)*100}%;"></div>
+                                        <div class="progress-fill" style="width: ${(count / appData.inventory.length) * 100}%;"></div>
                                     </div>
                                 </div>
                             `;
-                        }).join('')}
+            }).join('')}
                     </div>
                 </div>
             `;
@@ -3300,7 +4210,7 @@
             csv += 'PROFITABILITY\n';
             csv += `Net Profit,${netProfit}\n`;
             csv += `Profit Margin,${margin}%\n`;
-            csv += `ROI,${((netProfit/expenses)*100).toFixed(2)}%\n`;
+            csv += `ROI,${((netProfit / expenses) * 100).toFixed(2)}%\n`;
             return csv;
         }
 
@@ -3338,15 +4248,15 @@
                     <div class="chart" style="height: 200px;">
                         <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
                             <div class="chart-bar" style="height: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
-                            <div class="chart-label">Revenue<br>${formatCurrency(revenue/1000)}K</div>
+                            <div class="chart-label">Revenue<br>${formatCurrency(revenue / 1000)}K</div>
                         </div>
                         <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div class="chart-bar" style="height: ${(expenses/revenue)*100}%; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);"></div>
-                            <div class="chart-label">Expenses<br>${formatCurrency(expenses/1000)}K</div>
+                            <div class="chart-bar" style="height: ${(expenses / revenue) * 100}%; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);"></div>
+                            <div class="chart-label">Expenses<br>${formatCurrency(expenses / 1000)}K</div>
                         </div>
                         <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div class="chart-bar" style="height: ${(netProfit/revenue)*100}%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                            <div class="chart-label">Net Profit<br>${formatCurrency(netProfit/1000)}K</div>
+                            <div class="chart-bar" style="height: ${(netProfit / revenue) * 100}%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                            <div class="chart-label">Net Profit<br>${formatCurrency(netProfit / 1000)}K</div>
                         </div>
                     </div>
                 </div>
@@ -3527,7 +4437,7 @@
             });
 
             Object.entries(customers).forEach(([name, data]) => {
-                csv += `${name},${data.orders},${data.revenue},${(data.revenue/data.orders).toFixed(2)},${data.lastDate}\n`;
+                csv += `${name},${data.orders},${data.revenue},${(data.revenue / data.orders).toFixed(2)},${data.lastDate}\n`;
             });
             return csv;
         }
@@ -3574,7 +4484,7 @@
 
             // Generate content based on format
             if (format === 'csv') {
-                switch(reportType) {
+                switch (reportType) {
                     case 'sales': content = generateSalesReport(); break;
                     case 'inventory': content = generateInventoryReport(); break;
                     case 'financial': content = generateFinancialReport(); break;
@@ -3588,10 +4498,10 @@
                 mimeType = 'text/csv';
             } else if (format === 'json') {
                 let data = {};
-                switch(reportType) {
+                switch (reportType) {
                     case 'sales': data = { sales: appData.sales }; break;
                     case 'inventory': data = { inventory: appData.inventory }; break;
-                    case 'financial': 
+                    case 'financial':
                         data = {
                             revenue: appData.sales.reduce((sum, s) => sum + s.amount, 0),
                             expenses: appData.purchases.reduce((sum, p) => sum + p.amount, 0),
@@ -3623,7 +4533,7 @@
                 filename = `${reportType}_report_${new Date().toISOString().split('T')[0]}.json`;
                 mimeType = 'application/json';
             } else if (format === 'txt') {
-                switch(reportType) {
+                switch (reportType) {
                     case 'sales': content = generateSalesReport(); break;
                     case 'inventory': content = generateInventoryReport(); break;
                     case 'financial': content = generateFinancialReport(); break;
@@ -3676,7 +4586,7 @@
                         <h3 class="table-title">General Settings</h3>
                     </div>
                     <div style="padding: 24px;">
-                        <form>
+                        <form onsubmit="saveSettings(event)">
                             <div class="form-group">
                                 <label class="form-label">Company Name</label>
                                 <input type="text" class="form-input" value="My Company Inc." placeholder="Enter company name">
@@ -3734,7 +4644,7 @@
         }
 
         // Click outside modal to close
-        document.getElementById('modal').addEventListener('click', function(e) {
+        document.getElementById('modal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeModal();
             }
@@ -3923,7 +4833,7 @@
         function startScenario(scenarioId) {
             const scenario = practiceScenarios.find(s => s.id === scenarioId);
             showNotification('Scenario Started', `Starting: ${scenario.title}`);
-            
+
             // Navigate to appropriate page based on scenario
             if (scenarioId.includes('inventory')) {
                 loadPage('inventory');
@@ -4030,117 +4940,990 @@
         }
 
         // Knowledge Base Page
+        // Knowledge Base Data
+        const kbArticles = [
+            {
+                id: 'kb-1',
+                icon: '🏢',
+                iconBg: 'linear-gradient(135deg, #6366f1, #818cf8)',
+                title: 'What is ERP? — A Complete Overview',
+                category: 'ERP Basics',
+                difficulty: 'beginner',
+                readTime: 5,
+                summary: 'Understand Enterprise Resource Planning systems — what they do, why they matter, and how they transform businesses.',
+                content: `
+                    <h4>Definition</h4>
+                    <p>ERP (Enterprise Resource Planning) is a type of software that integrates all core business processes — inventory, sales, purchasing, finance, and HR — into one unified platform for better decision-making and operational efficiency.</p>
+                    <h4>Core Modules of an ERP</h4>
+                    <ul>
+                        <li><strong>Inventory Management</strong> — Track stock levels, SKUs, warehouse locations</li>
+                        <li><strong>Sales & CRM</strong> — Manage orders, customers, and revenue pipelines</li>
+                        <li><strong>Purchase Management</strong> — Handle supplier relationships and procurement</li>
+                        <li><strong>Finance & Accounting</strong> — General ledger, tax compliance (GST), reporting</li>
+                        <li><strong>Human Resources</strong> — Employee records, payroll, leave management</li>
+                    </ul>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Start by mastering one module at a time. Most businesses begin with Inventory and Sales before expanding to Finance and HR.</div>
+                    <h4>Benefits</h4>
+                    <ul>
+                        <li>Eliminates data silos — single source of truth</li>
+                        <li>Automates repetitive tasks and reduces manual errors</li>
+                        <li>Provides real-time dashboards and analytics</li>
+                        <li>Improves compliance with regulatory requirements (e.g., GST)</li>
+                    </ul>
+                `,
+                related: ['kb-2', 'kb-12']
+            },
+            {
+                id: 'kb-2',
+                icon: '🚀',
+                iconBg: 'linear-gradient(135deg, #10b981, #34d399)',
+                title: 'Getting Started — Your First Day with ERP',
+                category: 'ERP Basics',
+                difficulty: 'beginner',
+                readTime: 4,
+                summary: 'A step-by-step onboarding guide to set up your ERP system and start managing operations immediately.',
+                content: `
+                    <h4>Step 1: Familiarize Yourself with the Dashboard</h4>
+                    <p>The Dashboard is your home screen. It provides a quick snapshot of total revenue, inventory value, low stock alerts, and active employees. Use it every morning to plan your day.</p>
+                    <h4>Step 2: Set Up Your Inventory</h4>
+                    <p>Navigate to <strong>Inventory</strong> and add your products. Each product needs a name, SKU, HSN code, category, quantity, price, and GST rate.</p>
+                    <h4>Step 3: Create Your First Sales Order</h4>
+                    <p>Go to <strong>Sales</strong> → click <strong>New Sale</strong>. Enter the customer name, taxable amount, select the GST rate and type, then create the order.</p>
+                    <div class="kb-warning-box">⚠️ <strong>Important:</strong> Make sure you select the correct GST Type (Intra-State vs Inter-State) — this determines whether CGST+SGST or IGST applies.</div>
+                    <h4>Step 4: Explore Reports</h4>
+                    <p>Visit the <strong>Reports</strong> section to generate sales, inventory, and financial reports. You can export them as CSV, JSON, or print directly.</p>
+                `,
+                related: ['kb-1', 'kb-3']
+            },
+            {
+                id: 'kb-3',
+                icon: '📦',
+                iconBg: 'linear-gradient(135deg, #f59e0b, #fbbf24)',
+                title: 'Inventory Management — Stock Control Mastery',
+                category: 'Inventory',
+                difficulty: 'intermediate',
+                readTime: 6,
+                summary: 'Learn to manage stock levels, HSN codes, reorder points, and prevent stockouts or overstocking.',
+                content: `
+                    <h4>Understanding Stock Status</h4>
+                    <ul>
+                        <li><strong>In Stock (>20 units)</strong> — Healthy level, no action needed</li>
+                        <li><strong>Low Stock (11-20 units)</strong> — Consider reordering soon</li>
+                        <li><strong>Critical (≤10 units)</strong> — Immediate reorder required</li>
+                    </ul>
+                    <h4>HSN Codes</h4>
+                    <p>The Harmonized System of Nomenclature (HSN) code is a globally standardized numerical code for classifying goods. In India, HSN codes are required for GST filing.</p>
+                    <ul>
+                        <li>Electronics (Laptops, Monitors): <code>8471</code>, <code>8528</code></li>
+                        <li>Furniture (Chairs, Desks): <code>9401</code>, <code>9403</code></li>
+                        <li>Accessories (Mice, USB Hubs): <code>8471</code>, <code>8473</code></li>
+                    </ul>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Use the "Filter Low Stock" button in Inventory to quickly identify products that need reordering.</div>
+                    <h4>Best Practices</h4>
+                    <ul>
+                        <li>Conduct periodic stock audits to match physical and system counts</li>
+                        <li>Set minimum order quantities for each product</li>
+                        <li>Group products by category for faster lookup</li>
+                    </ul>
+                `,
+                related: ['kb-4', 'kb-6']
+            },
+            {
+                id: 'kb-4',
+                icon: '🛒',
+                iconBg: 'linear-gradient(135deg, #3b82f6, #60a5fa)',
+                title: 'Sales Orders — From Quote to Cash',
+                category: 'Sales & CRM',
+                difficulty: 'intermediate',
+                readTime: 5,
+                summary: 'Master the full sales cycle — creating orders, tracking status, managing GST compliance, and exporting reports.',
+                content: `
+                    <h4>Sales Order Workflow</h4>
+                    <ul>
+                        <li><strong>Pending</strong> — Order created, awaiting processing</li>
+                        <li><strong>Processing</strong> — Order is being fulfilled</li>
+                        <li><strong>Completed</strong> — Order delivered and payment received</li>
+                    </ul>
+                    <h4>GST on Sales</h4>
+                    <p>When creating a sales order, the system automatically computes:</p>
+                    <ul>
+                        <li><strong>Intra-State:</strong> CGST (half rate) + SGST (half rate)</li>
+                        <li><strong>Inter-State:</strong> IGST (full rate)</li>
+                    </ul>
+                    <p>Click the 👁 eye icon on any order to view the full GST invoice breakdown.</p>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Use the "Export" button to download all sales data as a CSV for accounting software like Tally or Zoho Books.</div>
+                    <h4>Key Metrics to Track</h4>
+                    <ul>
+                        <li>Average Order Value (AOV)</li>
+                        <li>Order-to-cash cycle time</li>
+                        <li>Monthly/quarterly revenue trends</li>
+                    </ul>
+                `,
+                related: ['kb-5', 'kb-6']
+            },
+            {
+                id: 'kb-5',
+                icon: '🧾',
+                iconBg: 'linear-gradient(135deg, #8b5cf6, #a78bfa)',
+                title: 'Purchase Orders — Supplier Management',
+                category: 'Sales & CRM',
+                difficulty: 'intermediate',
+                readTime: 4,
+                summary: 'Streamline procurement by managing supplier orders, tracking delivery status, and handling input GST credits.',
+                content: `
+                    <h4>Creating Purchase Orders</h4>
+                    <p>Navigate to <strong>Purchases</strong> → <strong>New Purchase Order</strong>. Enter the supplier name, taxable amount (excl. GST), select GST rate and type.</p>
+                    <h4>Purchase Status Flow</h4>
+                    <ul>
+                        <li><strong>Pending</strong> — PO raised, awaiting supplier confirmation</li>
+                        <li><strong>Received</strong> — Goods delivered and inventory updated</li>
+                    </ul>
+                    <h4>Input Tax Credit (ITC)</h4>
+                    <p>GST paid on purchases can be claimed as Input Tax Credit against GST collected on sales. This reduces your overall tax liability.</p>
+                    <div class="kb-warning-box">⚠️ <strong>Important:</strong> Ensure your supplier's GSTIN is valid and the invoice details match to claim ITC successfully.</div>
+                `,
+                related: ['kb-4', 'kb-6']
+            },
+            {
+                id: 'kb-6',
+                icon: '💰',
+                iconBg: 'linear-gradient(135deg, #ef4444, #f87171)',
+                title: 'GST Compliance — Rates, HSN & Filing',
+                category: 'Finance & GST',
+                difficulty: 'advanced',
+                readTime: 8,
+                summary: 'A comprehensive guide to India\'s GST system — understanding rate slabs, HSN codes, CGST/SGST/IGST, and ITC.',
+                content: `
+                    <h4>GST Rate Structure</h4>
+                    <ul>
+                        <li><strong>0% (Exempt)</strong> — Essential goods: fresh food, healthcare, education</li>
+                        <li><strong>5%</strong> — Mass consumption items: packaged food, footwear under ₹500</li>
+                        <li><strong>12%</strong> — Processed foods, business class air tickets, apparel ₹1000+</li>
+                        <li><strong>18%</strong> — Most goods and services: electronics, IT services, restaurants</li>
+                        <li><strong>28%</strong> — Luxury items: cars, tobacco, aerated beverages</li>
+                    </ul>
+                    <h4>Types of GST</h4>
+                    <ul>
+                        <li><strong>CGST (Central)</strong> — Goes to the Central Government</li>
+                        <li><strong>SGST (State)</strong> — Goes to the State Government</li>
+                        <li><strong>IGST (Integrated)</strong> — For inter-state transactions, goes to Central then settled</li>
+                    </ul>
+                    <div class="kb-tip-box">💡 <strong>Example:</strong> A ₹10,000 sale at 18% GST in intra-state produces CGST ₹900 + SGST ₹900 = Total ₹11,800. The same sale inter-state would be IGST ₹1,800 = Total ₹11,800.</div>
+                    <h4>HSN Code Requirement</h4>
+                    <ul>
+                        <li>Turnover up to ₹1.5 Cr — HSN codes optional</li>
+                        <li>₹1.5 Cr to ₹5 Cr — 2-digit HSN mandatory</li>
+                        <li>Above ₹5 Cr — 4-digit HSN mandatory</li>
+                    </ul>
+                `,
+                related: ['kb-3', 'kb-7']
+            },
+            {
+                id: 'kb-7',
+                icon: '📊',
+                iconBg: 'linear-gradient(135deg, #14b8a6, #5eead4)',
+                title: 'Financial Reports & Business Health',
+                category: 'Finance & GST',
+                difficulty: 'intermediate',
+                readTime: 5,
+                summary: 'Learn to read financial reports, understand key financial metrics, and assess your business health score.',
+                content: `
+                    <h4>Available Reports</h4>
+                    <ul>
+                        <li><strong>Sales Report</strong> — Revenue breakdown by customer and status</li>
+                        <li><strong>Inventory Report</strong> — Stock levels, valuation, and categories</li>
+                        <li><strong>Financial Report</strong> — Profit/loss, margins, cash flow overview</li>
+                        <li><strong>Purchase Report</strong> — Supplier-wise spending analysis</li>
+                        <li><strong>HR Report</strong> — Payroll costs and headcount</li>
+                    </ul>
+                    <h4>Reading the Analytics Dashboard</h4>
+                    <p>The Analytics Dashboard scores your business health on a 0-100 scale. It evaluates:</p>
+                    <ul>
+                        <li>Revenue vs expenses ratio</li>
+                        <li>Inventory turnover rate</li>
+                        <li>Order fulfillment efficiency</li>
+                        <li>Employee productivity</li>
+                    </ul>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Export reports in CSV format for further analysis in Excel or Google Sheets. Use JSON format for integration with other systems.</div>
+                `,
+                related: ['kb-6', 'kb-11']
+            },
+            {
+                id: 'kb-8',
+                icon: '👥',
+                iconBg: 'linear-gradient(135deg, #ec4899, #f472b6)',
+                title: 'Human Resources — Employee Management',
+                category: 'HR & Payroll',
+                difficulty: 'beginner',
+                readTime: 4,
+                summary: 'Manage employee records, departments, salaries, and track workforce performance metrics.',
+                content: `
+                    <h4>Employee Records</h4>
+                    <p>Each employee profile tracks: name, position, department, salary, joining date, and employment status.</p>
+                    <h4>Departments</h4>
+                    <ul>
+                        <li><strong>Engineering</strong> — Product development, technology</li>
+                        <li><strong>Sales</strong> — Revenue generation, customer relationships</li>
+                        <li><strong>Marketing</strong> — Brand awareness, lead generation</li>
+                        <li><strong>HR</strong> — People operations, recruitment</li>
+                    </ul>
+                    <h4>Payroll Considerations</h4>
+                    <p>Monthly payroll costs should be tracked as a key operating expense. Monitor the salary-to-revenue ratio to ensure sustainability.</p>
+                    <div class="kb-warning-box">⚠️ <strong>Compliance Note:</strong> Ensure all employee records comply with labor law requirements. Maintain proper documentation for audits.</div>
+                `,
+                related: ['kb-9', 'kb-7']
+            },
+            {
+                id: 'kb-9',
+                icon: '🎯',
+                iconBg: 'linear-gradient(135deg, #f97316, #fb923c)',
+                title: 'Performance Tracking & KPIs',
+                category: 'HR & Payroll',
+                difficulty: 'advanced',
+                readTime: 6,
+                summary: 'Define and measure Key Performance Indicators across all departments for data-driven management.',
+                content: `
+                    <h4>What are KPIs?</h4>
+                    <p>Key Performance Indicators are quantifiable measures that evaluate the success of an organization or specific activities. Good KPIs are SMART: Specific, Measurable, Achievable, Relevant, and Time-bound.</p>
+                    <h4>Essential ERP KPIs</h4>
+                    <ul>
+                        <li><strong>Inventory Turnover</strong> — How quickly stock is sold and replaced</li>
+                        <li><strong>Days Sales Outstanding (DSO)</strong> — Average time to collect revenue</li>
+                        <li><strong>Gross Margin %</strong> — Profitability per unit sold</li>
+                        <li><strong>Order Fulfillment Rate</strong> — % of orders delivered on time</li>
+                        <li><strong>Employee Productivity</strong> — Revenue per employee</li>
+                    </ul>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Focus on 3-5 KPIs maximum per department. Too many metrics lead to analysis paralysis.</div>
+                    <h4>Setting Targets</h4>
+                    <p>Use the Analytics Dashboard to track these KPIs over time. Set monthly or quarterly targets and review progress in team meetings.</p>
+                `,
+                related: ['kb-8', 'kb-11']
+            },
+            {
+                id: 'kb-10',
+                icon: '🔒',
+                iconBg: 'linear-gradient(135deg, #64748b, #94a3b8)',
+                title: 'Data Security & Best Practices',
+                category: 'ERP Basics',
+                difficulty: 'beginner',
+                readTime: 3,
+                summary: 'Essential security practices to protect your business data — backups, access control, and data hygiene.',
+                content: `
+                    <h4>Data Backup</h4>
+                    <p>This ERP system stores data in your browser's localStorage. While convenient, this means data is tied to your browser and device.</p>
+                    <div class="kb-warning-box">⚠️ <strong>Critical:</strong> Regularly export your data using the Reports → Export feature. Clearing browser data will delete all ERP records.</div>
+                    <h4>Best Practices</h4>
+                    <ul>
+                        <li>Export CSV backups weekly and store them securely</li>
+                        <li>Don't share your browser session with unauthorized users</li>
+                        <li>Regularly verify that your data is accurate</li>
+                        <li>Use the Settings page to configure alerts and notifications</li>
+                    </ul>
+                    <h4>Data Accuracy</h4>
+                    <p>Clean data is the foundation of good decisions. Periodically audit your inventory counts, customer records, and financial entries.</p>
+                `,
+                related: ['kb-1', 'kb-12']
+            },
+            {
+                id: 'kb-11',
+                icon: '📈',
+                iconBg: 'linear-gradient(135deg, #0ea5e9, #38bdf8)',
+                title: 'Analytics Dashboard — Data-Driven Decisions',
+                category: 'Analytics',
+                difficulty: 'intermediate',
+                readTime: 5,
+                summary: 'Leverage the Analytics Dashboard to understand business trends, compare performance, and make informed decisions.',
+                content: `
+                    <h4>Dashboard Components</h4>
+                    <ul>
+                        <li><strong>Business Health Score</strong> — Overall performance metric (0-100)</li>
+                        <li><strong>Revenue Trends</strong> — Monthly sales and purchase comparisons</li>
+                        <li><strong>Category Breakdown</strong> — Inventory distribution by product category</li>
+                        <li><strong>Top Performers</strong> — Identify best-selling products and top customers</li>
+                    </ul>
+                    <h4>How to Use Analytics</h4>
+                    <p>Visit the Analytics Dashboard weekly to review trends. Look for patterns like seasonal demand changes, slowing inventory turnover, or rising costs.</p>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Compare the "Revenue vs Expenses" chart month-over-month. A widening gap in favor of revenue indicates healthy growth.</div>
+                    <h4>Actionable Insights</h4>
+                    <ul>
+                        <li>If inventory turnover is low → reduce stock levels or run promotions</li>
+                        <li>If gross margin is shrinking → review pricing or negotiate with suppliers</li>
+                        <li>If a category dominates → consider expanding that product line</li>
+                    </ul>
+                `,
+                related: ['kb-7', 'kb-9']
+            },
+            {
+                id: 'kb-12',
+                icon: '⚙️',
+                iconBg: 'linear-gradient(135deg, #a855f7, #c084fc)',
+                title: 'Settings & Customization',
+                category: 'ERP Basics',
+                difficulty: 'beginner',
+                readTime: 3,
+                summary: 'Configure your ERP system — company details, notification preferences, currency format, and user profile.',
+                content: `
+                    <h4>Company Settings</h4>
+                    <p>Navigate to <strong>Settings</strong> to configure your company name, tax ID, business address, and contact details. This information appears on reports and invoices.</p>
+                    <h4>Notification Preferences</h4>
+                    <ul>
+                        <li><strong>Low Stock Alerts</strong> — Get notified when products drop below threshold</li>
+                        <li><strong>Order Updates</strong> — Status change notifications for sales and purchases</li>
+                        <li><strong>System Alerts</strong> — Important system-level notifications</li>
+                    </ul>
+                    <h4>User Profile</h4>
+                    <p>Click your avatar in the top-right corner to access your profile. You can update your name, email, and other details.</p>
+                    <div class="kb-tip-box">💡 <strong>Pro Tip:</strong> Enable all notification types during setup so you never miss critical alerts like low stock or overdue orders.</div>
+                `,
+                related: ['kb-1', 'kb-10']
+            }
+        ];
+
+        const kbCategories = ['All', 'ERP Basics', 'Inventory', 'Sales & CRM', 'Finance & GST', 'HR & Payroll', 'Analytics'];
+
+        let kbBookmarks = JSON.parse(localStorage.getItem('erpKBBookmarks') || '[]');
+        let kbActiveCategory = 'All';
+        let kbSearchQuery = '';
+        let kbExpandedArticle = null;
+
         function loadKnowledgeBase() {
+            const bookmarkCount = kbBookmarks.length;
+            const categoryCountMap = {};
+            kbCategories.forEach(c => { if (c !== 'All') categoryCountMap[c] = kbArticles.filter(a => a.category === c).length; });
+
             document.getElementById('pageContent').innerHTML = `
                 <div class="page-header">
                     <h1 class="page-title">Knowledge Base</h1>
-                    <p class="page-subtitle">Learn ERP concepts and best practices</p>
+                    <p class="page-subtitle">Learn ERP concepts, GST compliance, and business best practices</p>
                 </div>
 
-                <div class="grid-2">
-                    <div class="table-container">
-                        <div class="table-header">
-                            <h3 class="table-title">📚 Getting Started</h3>
-                        </div>
-                        <div style="padding: 24px;">
-                            <div style="display: grid; gap: 16px;">
-                                <div class="scenario-step">
-                                    <h4 style="margin-bottom: 8px; font-size: 16px;">What is ERP?</h4>
-                                    <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
-                                        ERP (Enterprise Resource Planning) is a system that integrates all core business processes - inventory, sales, purchasing, finance, and HR - into one unified platform for better decision-making.
-                                    </p>
-                                </div>
-                                <div class="scenario-step">
-                                    <h4 style="margin-bottom: 8px; font-size: 16px;">Why Use ERP?</h4>
-                                    <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
-                                        ERP systems improve efficiency, reduce errors, provide real-time visibility into operations, and help businesses make data-driven decisions.
-                                    </p>
-                                </div>
-                            </div>
+                <div class="kb-stats-strip">
+                    <div class="kb-stat-chip">
+                        <div class="kb-stat-icon" style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05));">📚</div>
+                        <div class="kb-stat-info">
+                            <div class="kb-stat-val">${kbArticles.length}</div>
+                            <div class="kb-stat-label">Articles</div>
                         </div>
                     </div>
-
-                    <div class="table-container">
-                        <div class="table-header">
-                            <h3 class="table-title">💡 Key Concepts</h3>
+                    <div class="kb-stat-chip">
+                        <div class="kb-stat-icon" style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));">📂</div>
+                        <div class="kb-stat-info">
+                            <div class="kb-stat-val">${kbCategories.length - 1}</div>
+                            <div class="kb-stat-label">Categories</div>
                         </div>
-                        <div style="padding: 24px;">
-                            <div style="display: grid; gap: 16px;">
-                                <div class="scenario-step">
-                                    <h4 style="margin-bottom: 8px; font-size: 16px;">Inventory Management</h4>
-                                    <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
-                                        Track product quantities, manage stock levels, and automate reordering to prevent stockouts or overstocking.
-                                    </p>
-                                </div>
-                                <div class="scenario-step">
-                                    <h4 style="margin-bottom: 8px; font-size: 16px;">Order Processing</h4>
-                                    <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
-                                        Manage sales and purchase orders from creation to fulfillment, ensuring accurate record-keeping and timely delivery.
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="kb-stat-chip">
+                        <div class="kb-stat-icon" style="background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));">⭐</div>
+                        <div class="kb-stat-info">
+                            <div class="kb-stat-val">${bookmarkCount}</div>
+                            <div class="kb-stat-label">Bookmarked</div>
+                        </div>
+                    </div>
+                    <div class="kb-stat-chip">
+                        <div class="kb-stat-icon" style="background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(236,72,153,0.05));">⏱</div>
+                        <div class="kb-stat-info">
+                            <div class="kb-stat-val">${kbArticles.reduce((s, a) => s + a.readTime, 0)} min</div>
+                            <div class="kb-stat-label">Total Reading</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="table-container" style="margin-top: 24px;">
-                    <div class="table-header">
-                        <h3 class="table-title">🎯 Best Practices</h3>
-                    </div>
-                    <div style="padding: 24px;">
-                        <div style="display: grid; gap: 16px;">
-                            <div class="scenario-step">
-                                <div class="scenario-step-header">
-                                    <div class="scenario-step-number">1</div>
-                                    <div class="scenario-step-title">Keep Data Accurate</div>
-                                </div>
-                                <div class="scenario-step-content">
-                                    Regularly update inventory counts, verify customer information, and maintain clean data for reliable reporting.
-                                </div>
-                            </div>
-                            <div class="scenario-step">
-                                <div class="scenario-step-header">
-                                    <div class="scenario-step-number">2</div>
-                                    <div class="scenario-step-title">Monitor Key Metrics</div>
-                                </div>
-                                <div class="scenario-step-content">
-                                    Track KPIs like inventory turnover, order fulfillment time, and profit margins to identify areas for improvement.
-                                </div>
-                            </div>
-                            <div class="scenario-step">
-                                <div class="scenario-step-header">
-                                    <div class="scenario-step-number">3</div>
-                                    <div class="scenario-step-title">Train Your Team</div>
-                                </div>
-                                <div class="scenario-step-content">
-                                    Ensure all users understand their roles and responsibilities within the ERP system to maximize efficiency.
-                                </div>
-                            </div>
-                            <div class="scenario-step">
-                                <div class="scenario-step-header">
-                                    <div class="scenario-step-number">4</div>
-                                    <div class="scenario-step-title">Regular Backups</div>
-                                </div>
-                                <div class="scenario-step-content">
-                                    Always maintain backups of critical business data to prevent loss in case of system failures.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="kb-search-container">
+                    <svg class="kb-search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" id="kbSearchInput" placeholder="Search articles by title, category, or keyword..." value="${kbSearchQuery}" oninput="kbSearch(this.value)">
                 </div>
 
-                <div class="hint-box" style="margin-top: 24px;">
-                    <div class="hint-header">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        Pro Tip
-                    </div>
-                    <div class="hint-content">
-                        Start with the Practice Scenarios to get hands-on experience with each module. Complete scenarios in order from beginner to advanced for the best learning experience!
-                    </div>
+                <div class="kb-categories" id="kbCategories">
+                    ${kbCategories.map(cat => `
+                        <button class="kb-category-pill ${kbActiveCategory === cat ? 'active' : ''}" onclick="kbFilterCategory('${cat}')">
+                            ${cat}
+                            ${cat !== 'All' ? `<span class="pill-count">${categoryCountMap[cat] || 0}</span>` : `<span class="pill-count">${kbArticles.length}</span>`}
+                        </button>
+                    `).join('')}
+                    <button class="kb-category-pill ${kbActiveCategory === 'Bookmarked' ? 'active' : ''}" onclick="kbFilterCategory('Bookmarked')" style="margin-left: auto;">
+                        ⭐ Bookmarked
+                        <span class="pill-count">${bookmarkCount}</span>
+                    </button>
+                </div>
+
+                <div id="kbArticlesList">
+                    ${renderKBArticles()}
                 </div>
             `;
+        }
+
+        function renderKBArticles() {
+            let filtered = kbArticles;
+
+            if (kbActiveCategory === 'Bookmarked') {
+                filtered = filtered.filter(a => kbBookmarks.includes(a.id));
+            } else if (kbActiveCategory !== 'All') {
+                filtered = filtered.filter(a => a.category === kbActiveCategory);
+            }
+
+            if (kbSearchQuery.trim()) {
+                const q = kbSearchQuery.toLowerCase();
+                filtered = filtered.filter(a =>
+                    a.title.toLowerCase().includes(q) ||
+                    a.category.toLowerCase().includes(q) ||
+                    a.summary.toLowerCase().includes(q) ||
+                    a.content.toLowerCase().includes(q)
+                );
+            }
+
+            if (filtered.length === 0) {
+                return `
+                    <div class="kb-no-results">
+                        <div class="kb-no-icon">🔍</div>
+                        <h3>No articles found</h3>
+                        <p>Try a different search term or category filter.</p>
+                    </div>
+                `;
+            }
+
+            return filtered.map(article => {
+                const isBookmarked = kbBookmarks.includes(article.id);
+                const isExpanded = kbExpandedArticle === article.id;
+                const diffClass = 'kb-tag-' + article.difficulty;
+                const diffLabel = article.difficulty.charAt(0).toUpperCase() + article.difficulty.slice(1);
+
+                let displayTitle = article.title;
+                let displaySummary = article.summary;
+                if (kbSearchQuery.trim()) {
+                    const re = new RegExp(`(${kbSearchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    displayTitle = displayTitle.replace(re, '<span class="kb-highlight">$1</span>');
+                    displaySummary = displaySummary.replace(re, '<span class="kb-highlight">$1</span>');
+                }
+
+                const relatedArticles = (article.related || []).map(rid => kbArticles.find(a => a.id === rid)).filter(Boolean);
+
+                return `
+                    <div class="kb-article-card ${isExpanded ? 'expanded' : ''}" id="${article.id}">
+                        <div class="kb-article-header" onclick="kbToggleArticle('${article.id}')">
+                            <div class="kb-article-icon" style="background: ${article.iconBg}; color: white;">${article.icon}</div>
+                            <div class="kb-article-info">
+                                <div class="kb-article-title">${displayTitle}</div>
+                                <div class="kb-article-meta">
+                                    <span class="kb-tag ${diffClass}">${diffLabel}</span>
+                                    <span>${article.category}</span>
+                                    <span class="kb-read-time">
+                                        <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        ${article.readTime} min read
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="kb-article-actions">
+                                <button class="kb-bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="event.stopPropagation(); kbToggleBookmark('${article.id}')" title="${isBookmarked ? 'Remove Bookmark' : 'Bookmark'}">
+                                    ${isBookmarked ? '★' : '☆'}
+                                </button>
+                                <button class="kb-expand-btn ${isExpanded ? 'expanded' : ''}">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="kb-article-body">
+                            <div class="kb-article-content">
+                                <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-light);">${displaySummary}</p>
+                                ${article.content}
+                                ${relatedArticles.length > 0 ? `
+                                    <div class="kb-related-nav">
+                                        <span style="font-size: 12px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 4px;">🔗 Related:</span>
+                                        ${relatedArticles.map(ra => `
+                                            <button class="kb-related-link" onclick="event.stopPropagation(); kbNavigateTo('${ra.id}')">${ra.icon} ${ra.title.split('—')[0].trim()}</button>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function kbSearch(query) {
+            kbSearchQuery = query;
+            document.getElementById('kbArticlesList').innerHTML = renderKBArticles();
+        }
+
+        function kbFilterCategory(cat) {
+            kbActiveCategory = cat;
+            kbExpandedArticle = null;
+            loadKnowledgeBase();
+        }
+
+        function kbToggleArticle(articleId) {
+            kbExpandedArticle = kbExpandedArticle === articleId ? null : articleId;
+            document.getElementById('kbArticlesList').innerHTML = renderKBArticles();
+            if (kbExpandedArticle) {
+                setTimeout(() => {
+                    document.getElementById(articleId)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        function kbToggleBookmark(articleId) {
+            if (kbBookmarks.includes(articleId)) {
+                kbBookmarks = kbBookmarks.filter(id => id !== articleId);
+                showNotification('Bookmark Removed', 'Article removed from bookmarks');
+            } else {
+                kbBookmarks.push(articleId);
+                showNotification('Bookmarked! ⭐', 'Article saved to your bookmarks');
+            }
+            localStorage.setItem('erpKBBookmarks', JSON.stringify(kbBookmarks));
+            loadKnowledgeBase();
+        }
+
+        function kbNavigateTo(articleId) {
+            kbExpandedArticle = articleId;
+            kbActiveCategory = 'All';
+            kbSearchQuery = '';
+            loadKnowledgeBase();
+            setTimeout(() => {
+                document.getElementById(articleId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+
+        // ============ COMPANY SANDBOX ============
+
+        const sandboxCompanies = [
+            {
+                id: 'technova',
+                name: 'TechNova Solutions',
+                industry: 'IT Services & Software',
+                icon: '💻',
+                gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                logoBg: '#4f46e5',
+                tags: ['B2B', 'IT Services', '18% GST'],
+                description: 'A mid-size IT services company providing laptops, networking equipment, and software licenses to corporates. High-value orders with 18% GST on electronics.',
+                inventory: [
+                    { id: 1, name: 'Dell Latitude 5540 Laptop', sku: 'TN-LAP-001', hsnCode: '8471', gstRate: 18, quantity: 65, price: 72000, category: 'Laptops', status: 'In Stock' },
+                    { id: 2, name: 'HP ProBook 450 G10', sku: 'TN-LAP-002', hsnCode: '8471', gstRate: 18, quantity: 38, price: 58000, category: 'Laptops', status: 'In Stock' },
+                    { id: 3, name: 'Cisco Catalyst Switch 24-Port', sku: 'TN-NET-001', hsnCode: '8517', gstRate: 18, quantity: 14, price: 95000, category: 'Networking', status: 'Low Stock' },
+                    { id: 4, name: 'APC Smart UPS 1500VA', sku: 'TN-UPS-001', hsnCode: '8504', gstRate: 18, quantity: 22, price: 18500, category: 'Power', status: 'In Stock' },
+                    { id: 5, name: 'Microsoft 365 Business License', sku: 'TN-SW-001', hsnCode: '8523', gstRate: 18, quantity: 200, price: 8400, category: 'Software', status: 'In Stock' },
+                    { id: 6, name: 'Logitech MK295 Keyboard-Mouse Combo', sku: 'TN-ACC-001', hsnCode: '8471', gstRate: 18, quantity: 85, price: 2200, category: 'Accessories', status: 'In Stock' },
+                    { id: 7, name: 'Dell 27" UltraSharp Monitor', sku: 'TN-MON-001', hsnCode: '8528', gstRate: 18, quantity: 8, price: 42000, category: 'Displays', status: 'Critical' },
+                    { id: 8, name: 'Cat 6 Ethernet Cable (Box 305m)', sku: 'TN-NET-002', hsnCode: '8544', gstRate: 18, quantity: 30, price: 6500, category: 'Networking', status: 'In Stock' }
+                ],
+                sales: [
+                    { id: 1, orderNumber: 'TN-SO-001', customer: 'Infosys Ltd', amount: 885600, gstRate: 18, taxableAmount: 750508.47, cgst: 67545.76, sgst: 67545.76, totalWithGst: 885600, date: '2024-03-01', status: 'Completed' },
+                    { id: 2, orderNumber: 'TN-SO-002', customer: 'Wipro Technologies', amount: 543400, gstRate: 18, taxableAmount: 460508.47, cgst: 41445.76, sgst: 41445.76, totalWithGst: 543400, date: '2024-03-05', status: 'Completed' },
+                    { id: 3, orderNumber: 'TN-SO-003', customer: 'TCS Digital', amount: 1254000, gstRate: 18, taxableAmount: 1062711.86, cgst: 95644.07, sgst: 95644.07, totalWithGst: 1254000, date: '2024-03-08', status: 'Processing' },
+                    { id: 4, orderNumber: 'TN-SO-004', customer: 'Zoho Corp', amount: 296800, gstRate: 18, taxableAmount: 251525.42, cgst: 22637.29, sgst: 22637.29, totalWithGst: 296800, date: '2024-03-10', status: 'Pending' },
+                    { id: 5, orderNumber: 'TN-SO-005', customer: 'Freshworks Inc', amount: 720000, gstRate: 18, taxableAmount: 610169.49, cgst: 54915.25, sgst: 54915.25, totalWithGst: 720000, date: '2024-03-12', status: 'Completed' }
+                ],
+                purchases: [
+                    { id: 1, poNumber: 'TN-PO-001', supplier: 'Dell India Pvt Ltd', amount: 2160000, gstRate: 18, taxableAmount: 1830508.47, cgst: 164745.76, sgst: 164745.76, totalWithGst: 2160000, date: '2024-02-20', status: 'Received' },
+                    { id: 2, poNumber: 'TN-PO-002', supplier: 'Cisco Systems India', amount: 1330000, gstRate: 18, taxableAmount: 1127118.64, cgst: 101440.68, sgst: 101440.68, totalWithGst: 1330000, date: '2024-02-25', status: 'Received' },
+                    { id: 3, poNumber: 'TN-PO-003', supplier: 'Microsoft India', amount: 840000, gstRate: 18, taxableAmount: 711864.41, cgst: 64067.80, sgst: 64067.80, totalWithGst: 840000, date: '2024-03-01', status: 'Pending' }
+                ],
+                employees: [
+                    { id: 1, name: 'Rajesh Kumar', position: 'CTO', department: 'Engineering', salary: 2400000, email: 'rajesh@technova.in', status: 'Active' },
+                    { id: 2, name: 'Priya Sharma', position: 'Sales Director', department: 'Sales', salary: 1800000, email: 'priya@technova.in', status: 'Active' },
+                    { id: 3, name: 'Amit Patel', position: 'Network Engineer', department: 'Engineering', salary: 900000, email: 'amit@technova.in', status: 'Active' },
+                    { id: 4, name: 'Neha Gupta', position: 'HR Manager', department: 'HR', salary: 1200000, email: 'neha@technova.in', status: 'Active' },
+                    { id: 5, name: 'Vikram Singh', position: 'Account Manager', department: 'Sales', salary: 1000000, email: 'vikram@technova.in', status: 'Active' }
+                ]
+            },
+            {
+                id: 'freshmart',
+                name: 'FreshMart Groceries',
+                industry: 'Retail & FMCG',
+                icon: '🛒',
+                gradient: 'linear-gradient(135deg, #10b981, #059669)',
+                logoBg: '#059669',
+                tags: ['B2C', 'Retail', 'Mixed GST'],
+                description: 'A grocery retail chain selling fresh produce (0% GST), packaged food (5%), and household items (18%). Great for learning mixed GST rate handling.',
+                inventory: [
+                    { id: 1, name: 'Basmati Rice Premium 5kg', sku: 'FM-GRN-001', hsnCode: '1006', gstRate: 5, quantity: 200, price: 450, category: 'Grains', status: 'In Stock' },
+                    { id: 2, name: 'Amul Butter 500g', sku: 'FM-DRY-001', hsnCode: '0405', gstRate: 12, quantity: 120, price: 270, category: 'Dairy', status: 'In Stock' },
+                    { id: 3, name: 'Fresh Apples (per kg)', sku: 'FM-FRT-001', hsnCode: '0808', gstRate: 0, quantity: 80, price: 180, category: 'Fruits', status: 'In Stock' },
+                    { id: 4, name: 'Surf Excel Detergent 2kg', sku: 'FM-HH-001', hsnCode: '3402', gstRate: 18, quantity: 60, price: 320, category: 'Household', status: 'In Stock' },
+                    { id: 5, name: 'Tata Tea Gold 500g', sku: 'FM-BEV-001', hsnCode: '0902', gstRate: 5, quantity: 95, price: 280, category: 'Beverages', status: 'In Stock' },
+                    { id: 6, name: 'Organic Honey 500g', sku: 'FM-NUT-001', hsnCode: '0409', gstRate: 0, quantity: 15, price: 550, category: 'Natural', status: 'Low Stock' },
+                    { id: 7, name: 'Maggi Noodles Family Pack', sku: 'FM-PKG-001', hsnCode: '1902', gstRate: 12, quantity: 180, price: 120, category: 'Packaged Food', status: 'In Stock' },
+                    { id: 8, name: 'Colgate MaxFresh 150g', sku: 'FM-PC-001', hsnCode: '3306', gstRate: 18, quantity: 7, price: 110, category: 'Personal Care', status: 'Critical' },
+                    { id: 9, name: 'Dettol Handwash 900ml', sku: 'FM-PC-002', hsnCode: '3401', gstRate: 18, quantity: 45, price: 195, category: 'Personal Care', status: 'In Stock' },
+                    { id: 10, name: 'Fresh Paneer 200g', sku: 'FM-DRY-002', hsnCode: '0406', gstRate: 0, quantity: 30, price: 90, category: 'Dairy', status: 'In Stock' }
+                ],
+                sales: [
+                    { id: 1, orderNumber: 'FM-SO-001', customer: 'Walk-in Customer', amount: 2450, gstRate: 5, taxableAmount: 2333.33, cgst: 58.33, sgst: 58.33, totalWithGst: 2450, date: '2024-03-15', status: 'Completed' },
+                    { id: 2, orderNumber: 'FM-SO-002', customer: 'Hotel Grand Palace', amount: 18500, gstRate: 5, taxableAmount: 17619.05, cgst: 440.48, sgst: 440.48, totalWithGst: 18500, date: '2024-03-14', status: 'Completed' },
+                    { id: 3, orderNumber: 'FM-SO-003', customer: 'Canteen Services Ltd', amount: 35200, gstRate: 12, taxableAmount: 31428.57, cgst: 1885.71, sgst: 1885.71, totalWithGst: 35200, date: '2024-03-13', status: 'Completed' },
+                    { id: 4, orderNumber: 'FM-SO-004', customer: 'Event Catering Co', amount: 12800, gstRate: 5, taxableAmount: 12190.48, cgst: 304.76, sgst: 304.76, totalWithGst: 12800, date: '2024-03-12', status: 'Processing' },
+                    { id: 5, orderNumber: 'FM-SO-005', customer: 'Local Restaurant', amount: 8950, gstRate: 5, taxableAmount: 8523.81, cgst: 213.10, sgst: 213.10, totalWithGst: 8950, date: '2024-03-10', status: 'Pending' }
+                ],
+                purchases: [
+                    { id: 1, poNumber: 'FM-PO-001', supplier: 'Amul Dairy Cooperative', amount: 85000, gstRate: 12, taxableAmount: 75892.86, cgst: 4553.57, sgst: 4553.57, totalWithGst: 85000, date: '2024-03-01', status: 'Received' },
+                    { id: 2, poNumber: 'FM-PO-002', supplier: 'Local Farm Produce', amount: 42000, gstRate: 0, taxableAmount: 42000, cgst: 0, sgst: 0, totalWithGst: 42000, date: '2024-03-05', status: 'Received' },
+                    { id: 3, poNumber: 'FM-PO-003', supplier: 'HUL Distributors', amount: 125000, gstRate: 18, taxableAmount: 105932.20, cgst: 9533.90, sgst: 9533.90, totalWithGst: 125000, date: '2024-03-08', status: 'Pending' },
+                    { id: 4, poNumber: 'FM-PO-004', supplier: 'Tata Consumer Products', amount: 68000, gstRate: 5, taxableAmount: 64761.90, cgst: 1619.05, sgst: 1619.05, totalWithGst: 68000, date: '2024-03-10', status: 'Received' }
+                ],
+                employees: [
+                    { id: 1, name: 'Suresh Agarwal', position: 'Store Manager', department: 'Operations', salary: 600000, email: 'suresh@freshmart.in', status: 'Active' },
+                    { id: 2, name: 'Meena Devi', position: 'Cashier Supervisor', department: 'Operations', salary: 360000, email: 'meena@freshmart.in', status: 'Active' },
+                    { id: 3, name: 'Ravi Teja', position: 'Procurement Head', department: 'Purchasing', salary: 540000, email: 'ravi@freshmart.in', status: 'Active' },
+                    { id: 4, name: 'Anita Roy', position: 'Accounts Officer', department: 'Finance', salary: 480000, email: 'anita@freshmart.in', status: 'Active' }
+                ]
+            },
+            {
+                id: 'steelforge',
+                name: 'SteelForge Industries',
+                industry: 'Manufacturing & Heavy Goods',
+                icon: '🏭',
+                gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                logoBg: '#d97706',
+                tags: ['B2B', 'Manufacturing', '18% GST'],
+                description: 'A steel manufacturing company dealing in raw materials, finished steel products, and industrial equipment. High-volume B2B orders with transport logistics.',
+                inventory: [
+                    { id: 1, name: 'MS Steel Plate 10mm (per ton)', sku: 'SF-STL-001', hsnCode: '7208', gstRate: 18, quantity: 50, price: 62000, category: 'Raw Steel', status: 'In Stock' },
+                    { id: 2, name: 'TMT Steel Bars Fe-500 (per ton)', sku: 'SF-STL-002', hsnCode: '7214', gstRate: 18, quantity: 120, price: 55000, category: 'Construction Steel', status: 'In Stock' },
+                    { id: 3, name: 'Industrial Welding Rod 3.15mm (box)', sku: 'SF-WLD-001', hsnCode: '8311', gstRate: 18, quantity: 300, price: 1800, category: 'Consumables', status: 'In Stock' },
+                    { id: 4, name: 'Hydraulic Press Machine', sku: 'SF-MCH-001', hsnCode: '8462', gstRate: 18, quantity: 3, price: 850000, category: 'Machinery', status: 'Low Stock' },
+                    { id: 5, name: 'Safety Helmet ISI Marked', sku: 'SF-SAF-001', hsnCode: '6506', gstRate: 18, quantity: 200, price: 450, category: 'Safety Gear', status: 'In Stock' },
+                    { id: 6, name: 'Stainless Steel Sheet 304 (per kg)', sku: 'SF-SS-001', hsnCode: '7219', gstRate: 18, quantity: 5000, price: 280, category: 'Stainless Steel', status: 'In Stock' }
+                ],
+                sales: [
+                    { id: 1, orderNumber: 'SF-SO-001', customer: 'L&T Construction', amount: 4720000, gstRate: 18, taxableAmount: 4000000, cgst: 360000, sgst: 360000, totalWithGst: 4720000, date: '2024-02-28', status: 'Completed' },
+                    { id: 2, orderNumber: 'SF-SO-002', customer: 'Tata Projects Ltd', amount: 2832000, gstRate: 18, taxableAmount: 2400000, cgst: 216000, sgst: 216000, totalWithGst: 2832000, date: '2024-03-02', status: 'Completed' },
+                    { id: 3, orderNumber: 'SF-SO-003', customer: 'Godrej Construction', amount: 1652000, gstRate: 18, taxableAmount: 1400000, cgst: 126000, sgst: 126000, totalWithGst: 1652000, date: '2024-03-06', status: 'Processing' },
+                    { id: 4, orderNumber: 'SF-SO-004', customer: 'Shapoorji Pallonji', amount: 3540000, gstRate: 18, taxableAmount: 3000000, cgst: 270000, sgst: 270000, totalWithGst: 3540000, date: '2024-03-09', status: 'Pending' }
+                ],
+                purchases: [
+                    { id: 1, poNumber: 'SF-PO-001', supplier: 'SAIL (Steel Authority)', amount: 7080000, gstRate: 18, taxableAmount: 6000000, cgst: 540000, sgst: 540000, totalWithGst: 7080000, date: '2024-02-15', status: 'Received' },
+                    { id: 2, poNumber: 'SF-PO-002', supplier: 'Tata Steel Ltd', amount: 4130000, gstRate: 18, taxableAmount: 3500000, cgst: 315000, sgst: 315000, totalWithGst: 4130000, date: '2024-02-22', status: 'Received' },
+                    { id: 3, poNumber: 'SF-PO-003', supplier: 'Jindal Steel', amount: 2360000, gstRate: 18, taxableAmount: 2000000, cgst: 180000, sgst: 180000, totalWithGst: 2360000, date: '2024-03-01', status: 'Pending' }
+                ],
+                employees: [
+                    { id: 1, name: 'Harish Mehta', position: 'Plant Director', department: 'Operations', salary: 2100000, email: 'harish@steelforge.in', status: 'Active' },
+                    { id: 2, name: 'Ramesh Yadav', position: 'Production Manager', department: 'Manufacturing', salary: 1200000, email: 'ramesh@steelforge.in', status: 'Active' },
+                    { id: 3, name: 'Sunita Joshi', position: 'Quality Inspector', department: 'Quality', salary: 780000, email: 'sunita@steelforge.in', status: 'Active' },
+                    { id: 4, name: 'Deepak Verma', position: 'Safety Officer', department: 'Safety', salary: 720000, email: 'deepak@steelforge.in', status: 'Active' },
+                    { id: 5, name: 'Kavita Nair', position: 'Accounts Manager', department: 'Finance', salary: 960000, email: 'kavita@steelforge.in', status: 'Active' },
+                    { id: 6, name: 'Mahesh Kulkarni', position: 'Dispatch Supervisor', department: 'Logistics', salary: 540000, email: 'mahesh@steelforge.in', status: 'Active' }
+                ]
+            },
+            {
+                id: 'cafemocha',
+                name: 'Café Mocha Chain',
+                industry: 'Food & Beverage',
+                icon: '☕',
+                gradient: 'linear-gradient(135deg, #92400e, #b45309)',
+                logoBg: '#92400e',
+                tags: ['B2C', 'Food Service', '5% GST'],
+                description: 'A popular café chain serving coffee, pastries, and snacks. Most items at 5% GST (restaurant services). Learn hospitality-specific ERP workflows.',
+                inventory: [
+                    { id: 1, name: 'Arabica Coffee Beans 1kg', sku: 'CM-COF-001', hsnCode: '0901', gstRate: 5, quantity: 50, price: 1200, category: 'Coffee', status: 'In Stock' },
+                    { id: 2, name: 'Whole Milk 500ml Tetrapak (case)', sku: 'CM-DRY-001', hsnCode: '0401', gstRate: 0, quantity: 80, price: 1600, category: 'Dairy', status: 'In Stock' },
+                    { id: 3, name: 'Belgian Chocolate Sauce 2L', sku: 'CM-SYR-001', hsnCode: '1806', gstRate: 12, quantity: 18, price: 850, category: 'Syrups', status: 'Low Stock' },
+                    { id: 4, name: 'Croissant Dough Frozen (pack 20)', sku: 'CM-BKY-001', hsnCode: '1905', gstRate: 5, quantity: 25, price: 680, category: 'Bakery', status: 'In Stock' },
+                    { id: 5, name: 'Paper Cups 12oz (sleeve 50)', sku: 'CM-PKG-001', hsnCode: '4823', gstRate: 12, quantity: 100, price: 220, category: 'Packaging', status: 'In Stock' },
+                    { id: 6, name: 'Vanilla Syrup 750ml', sku: 'CM-SYR-002', hsnCode: '2106', gstRate: 12, quantity: 35, price: 420, category: 'Syrups', status: 'In Stock' },
+                    { id: 7, name: 'Green Tea Matcha Powder 250g', sku: 'CM-TEA-001', hsnCode: '0902', gstRate: 5, quantity: 12, price: 1800, category: 'Tea', status: 'Low Stock' }
+                ],
+                sales: [
+                    { id: 1, orderNumber: 'CM-SO-001', customer: 'Daily In-Store Sales', amount: 45500, gstRate: 5, taxableAmount: 43333.33, cgst: 1083.33, sgst: 1083.33, totalWithGst: 45500, date: '2024-03-15', status: 'Completed' },
+                    { id: 2, orderNumber: 'CM-SO-002', customer: 'Corporate Office Catering', amount: 28000, gstRate: 5, taxableAmount: 26666.67, cgst: 666.67, sgst: 666.67, totalWithGst: 28000, date: '2024-03-14', status: 'Completed' },
+                    { id: 3, orderNumber: 'CM-SO-003', customer: 'Swiggy/Zomato Orders', amount: 62000, gstRate: 5, taxableAmount: 59047.62, cgst: 1476.19, sgst: 1476.19, totalWithGst: 62000, date: '2024-03-13', status: 'Completed' },
+                    { id: 4, orderNumber: 'CM-SO-004', customer: 'Birthday Party Event', amount: 15500, gstRate: 5, taxableAmount: 14761.90, cgst: 369.05, sgst: 369.05, totalWithGst: 15500, date: '2024-03-12', status: 'Processing' }
+                ],
+                purchases: [
+                    { id: 1, poNumber: 'CM-PO-001', supplier: 'Blue Tokai Coffee Roasters', amount: 48000, gstRate: 5, taxableAmount: 45714.29, cgst: 1142.86, sgst: 1142.86, totalWithGst: 48000, date: '2024-03-01', status: 'Received' },
+                    { id: 2, poNumber: 'CM-PO-002', supplier: 'Heritage Dairy', amount: 32000, gstRate: 0, taxableAmount: 32000, cgst: 0, sgst: 0, totalWithGst: 32000, date: '2024-03-05', status: 'Received' },
+                    { id: 3, poNumber: 'CM-PO-003', supplier: 'Packaging World India', amount: 18500, gstRate: 12, taxableAmount: 16517.86, cgst: 991.07, sgst: 991.07, totalWithGst: 18500, date: '2024-03-08', status: 'Pending' }
+                ],
+                employees: [
+                    { id: 1, name: 'Arjun Reddy', position: 'Café Manager', department: 'Operations', salary: 480000, email: 'arjun@cafemocha.in', status: 'Active' },
+                    { id: 2, name: 'Divya Krishnan', position: 'Head Barista', department: 'Operations', salary: 360000, email: 'divya@cafemocha.in', status: 'Active' },
+                    { id: 3, name: 'Sneha Pillai', position: 'Pastry Chef', department: 'Kitchen', salary: 420000, email: 'sneha@cafemocha.in', status: 'Active' }
+                ]
+            },
+            {
+                id: 'medicare',
+                name: 'MediCare Pharma',
+                industry: 'Pharmaceutical & Healthcare',
+                icon: '💊',
+                gradient: 'linear-gradient(135deg, #0ea5e9, #0284c7)',
+                logoBg: '#0284c7',
+                tags: ['B2B/B2C', 'Pharma', '12% GST'],
+                description: 'A pharmaceutical distributor handling medicines, medical devices, and healthcare supplies. Most pharma products @ 12% GST with strict regulatory requirements.',
+                inventory: [
+                    { id: 1, name: 'Paracetamol 500mg (strip 10)', sku: 'MC-MED-001', hsnCode: '3004', gstRate: 12, quantity: 500, price: 28, category: 'Medicines', status: 'In Stock' },
+                    { id: 2, name: 'Digital Thermometer', sku: 'MC-DEV-001', hsnCode: '9025', gstRate: 12, quantity: 75, price: 350, category: 'Devices', status: 'In Stock' },
+                    { id: 3, name: 'Surgical Gloves (box 100)', sku: 'MC-SUP-001', hsnCode: '4015', gstRate: 12, quantity: 60, price: 480, category: 'Supplies', status: 'In Stock' },
+                    { id: 4, name: 'Vitamin D3 Supplements (60 caps)', sku: 'MC-NUT-001', hsnCode: '2936', gstRate: 12, quantity: 200, price: 420, category: 'Nutraceuticals', status: 'In Stock' },
+                    { id: 5, name: 'BP Monitor Omron HEM-7120', sku: 'MC-DEV-002', hsnCode: '9018', gstRate: 12, quantity: 9, price: 1800, category: 'Devices', status: 'Critical' },
+                    { id: 6, name: 'Cetrizine 10mg (strip 10)', sku: 'MC-MED-002', hsnCode: '3004', gstRate: 12, quantity: 350, price: 35, category: 'Medicines', status: 'In Stock' },
+                    { id: 7, name: 'Pulse Oximeter', sku: 'MC-DEV-003', hsnCode: '9018', gstRate: 12, quantity: 20, price: 1200, category: 'Devices', status: 'Low Stock' },
+                    { id: 8, name: 'N95 Face Mask (box 20)', sku: 'MC-SUP-002', hsnCode: '6307', gstRate: 5, quantity: 150, price: 280, category: 'Supplies', status: 'In Stock' }
+                ],
+                sales: [
+                    { id: 1, orderNumber: 'MC-SO-001', customer: 'Apollo Hospitals', amount: 245000, gstRate: 12, taxableAmount: 218750, cgst: 13125, sgst: 13125, totalWithGst: 245000, date: '2024-03-10', status: 'Completed' },
+                    { id: 2, orderNumber: 'MC-SO-002', customer: 'Medplus Pharmacy Chain', amount: 189000, gstRate: 12, taxableAmount: 168750, cgst: 10125, sgst: 10125, totalWithGst: 189000, date: '2024-03-08', status: 'Completed' },
+                    { id: 3, orderNumber: 'MC-SO-003', customer: 'AIIMS Delhi', amount: 520000, gstRate: 12, taxableAmount: 464285.71, cgst: 27857.14, sgst: 27857.14, totalWithGst: 520000, date: '2024-03-05', status: 'Processing' },
+                    { id: 4, orderNumber: 'MC-SO-004', customer: 'Practo Health Clinic', amount: 78000, gstRate: 12, taxableAmount: 69642.86, cgst: 4178.57, sgst: 4178.57, totalWithGst: 78000, date: '2024-03-03', status: 'Pending' },
+                    { id: 5, orderNumber: 'MC-SO-005', customer: 'Max Healthcare', amount: 340000, gstRate: 12, taxableAmount: 303571.43, cgst: 18214.29, sgst: 18214.29, totalWithGst: 340000, date: '2024-03-01', status: 'Completed' }
+                ],
+                purchases: [
+                    { id: 1, poNumber: 'MC-PO-001', supplier: 'Sun Pharma Industries', amount: 380000, gstRate: 12, taxableAmount: 339285.71, cgst: 20357.14, sgst: 20357.14, totalWithGst: 380000, date: '2024-02-20', status: 'Received' },
+                    { id: 2, poNumber: 'MC-PO-002', supplier: 'Cipla Ltd', amount: 265000, gstRate: 12, taxableAmount: 236607.14, cgst: 14196.43, sgst: 14196.43, totalWithGst: 265000, date: '2024-02-25', status: 'Received' },
+                    { id: 3, poNumber: 'MC-PO-003', supplier: 'Omron Healthcare', amount: 156000, gstRate: 12, taxableAmount: 139285.71, cgst: 8357.14, sgst: 8357.14, totalWithGst: 156000, date: '2024-03-01', status: 'Pending' }
+                ],
+                employees: [
+                    { id: 1, name: 'Dr. Sanjay Rao', position: 'Managing Director', department: 'Management', salary: 2400000, email: 'sanjay@medicare.in', status: 'Active' },
+                    { id: 2, name: 'Lakshmi Iyer', position: 'Supply Chain Head', department: 'Logistics', salary: 1320000, email: 'lakshmi@medicare.in', status: 'Active' },
+                    { id: 3, name: 'Farhan Khan', position: 'Quality Assurance', department: 'Quality', salary: 900000, email: 'farhan@medicare.in', status: 'Active' },
+                    { id: 4, name: 'Pooja Deshmukh', position: 'Pharmacist', department: 'Operations', salary: 660000, email: 'pooja@medicare.in', status: 'Active' },
+                    { id: 5, name: 'Nitin Jain', position: 'Finance Controller', department: 'Finance', salary: 1440000, email: 'nitin@medicare.in', status: 'Active' }
+                ]
+            }
+        ];
+
+        let activeSandbox = localStorage.getItem('activeSandbox') || null;
+
+        function loadSandbox() {
+            const activeCompany = activeSandbox ? sandboxCompanies.find(c => c.id === activeSandbox) : null;
+
+            document.getElementById('pageContent').innerHTML = `
+                <div class="page-header">
+                    <h1 class="page-title">Company Sandbox</h1>
+                    <p class="page-subtitle">Load real-world company data to practice ERP operations across different industries</p>
+                </div>
+
+                ${activeCompany ? `
+                    <div class="sandbox-active-banner">
+                        <div class="sandbox-active-icon" style="background: ${activeCompany.gradient}; color: white;">${activeCompany.icon}</div>
+                        <div class="sandbox-active-info">
+                            <h4>Currently Active: ${activeCompany.name}</h4>
+                            <p>${activeCompany.industry} — All modules are loaded with this company's data. Explore Dashboard, Inventory, Sales, etc.</p>
+                        </div>
+                        <button class="sandbox-reset-btn" onclick="resetSandbox()">⟲ Reset to Default</button>
+                    </div>
+                ` : `
+                    <div class="hint-box" style="margin-bottom: 24px;">
+                        <div class="hint-header">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            How It Works
+                        </div>
+                        <div class="hint-content">
+                            Choose a company below to load its data into the ERP system. The Inventory, Sales, Purchases, and HR modules will be populated with that company's realistic business data. You can explore, add records, generate reports, and practice all ERP operations. Reset anytime to go back to the default data.
+                        </div>
+                    </div>
+                `}
+
+                <div class="sandbox-grid">
+                    ${sandboxCompanies.map(company => {
+                const totalRev = company.sales.reduce((s, o) => s + o.amount, 0);
+                const isActive = activeSandbox === company.id;
+                return `
+                            <div class="sandbox-company-card ${isActive ? 'active-sandbox' : ''}">
+                                <div class="sandbox-card-header" style="background: ${company.gradient};">
+                                    <div class="sandbox-logo" style="background: ${company.logoBg}; color: white;">${company.icon}</div>
+                                    <h3>${company.name}</h3>
+                                    <div class="sandbox-industry">${company.industry}</div>
+                                    <div class="sandbox-tag-row">
+                                        ${company.tags.map(t => `<span class="sandbox-tag">${t}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="sandbox-card-body">
+                                    <div class="sandbox-desc">${company.description}</div>
+                                    <div class="sandbox-stats-grid">
+                                        <div class="sandbox-stat-item">
+                                            <div class="sandbox-stat-val">${company.inventory.length}</div>
+                                            <div class="sandbox-stat-lbl">Products</div>
+                                        </div>
+                                        <div class="sandbox-stat-item">
+                                            <div class="sandbox-stat-val">${company.sales.length}</div>
+                                            <div class="sandbox-stat-lbl">Sales Orders</div>
+                                        </div>
+                                        <div class="sandbox-stat-item">
+                                            <div class="sandbox-stat-val">${company.employees.length}</div>
+                                            <div class="sandbox-stat-lbl">Employees</div>
+                                        </div>
+                                        <div class="sandbox-stat-item">
+                                            <div class="sandbox-stat-val">${formatCurrency(totalRev).split('.')[0]}</div>
+                                            <div class="sandbox-stat-lbl">Total Revenue</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sandbox-card-footer">
+                                    ${isActive ? `
+                                        <button class="sandbox-load-btn outline" onclick="viewSandboxDetails('${company.id}')">📊 View Details</button>
+                                        <button class="sandbox-load-btn outline" style="border-color: #ef4444; color: #ef4444;" onclick="resetSandbox()">Reset</button>
+                                    ` : `
+                                        <button class="sandbox-load-btn primary" onclick="loadSandboxData('${company.id}')">🚀 Load Sandbox</button>
+                                        <button class="sandbox-load-btn outline" onclick="viewSandboxDetails('${company.id}')">Preview</button>
+                                    `}
+                                </div>
+                            </div>
+                        `;
+            }).join('')}
+                </div>
+            `;
+        }
+
+        function loadSandboxData(companyId) {
+            const company = sandboxCompanies.find(c => c.id === companyId);
+            if (!company) return;
+
+            if (!confirm(`Load "${company.name}" data?\n\nThis will replace your current Inventory, Sales, Purchases, and HR data with ${company.name}'s business data.\n\nYour original data will be backed up and can be restored using the "Reset to Default" button.`)) return;
+
+            // Backup current data
+            localStorage.setItem('backup_inventory', JSON.stringify(appData.inventory));
+            localStorage.setItem('backup_sales', JSON.stringify(appData.sales));
+            localStorage.setItem('backup_purchases', JSON.stringify(appData.purchases));
+            localStorage.setItem('backup_employees', JSON.stringify(appData.employees));
+
+            // Load company data
+            appData.inventory = JSON.parse(JSON.stringify(company.inventory));
+            appData.sales = JSON.parse(JSON.stringify(company.sales));
+            appData.purchases = JSON.parse(JSON.stringify(company.purchases));
+            appData.employees = JSON.parse(JSON.stringify(company.employees));
+
+            // Save to localStorage
+            saveData('inventory');
+            saveData('sales');
+            saveData('purchases');
+            saveData('employees');
+
+            // Track active sandbox
+            activeSandbox = companyId;
+            localStorage.setItem('activeSandbox', companyId);
+
+            showNotification(`${company.icon} ${company.name} Loaded!`, `All modules now contain ${company.name}'s data. Explore the Dashboard to start!`);
+            loadSandbox();
+        }
+
+        function resetSandbox() {
+            if (!confirm('Reset to default data?\n\nThis will restore the original ERP data and remove the current sandbox company data.')) return;
+
+            const backupInv = localStorage.getItem('backup_inventory');
+            const backupSales = localStorage.getItem('backup_sales');
+            const backupPurchases = localStorage.getItem('backup_purchases');
+            const backupEmployees = localStorage.getItem('backup_employees');
+
+            if (backupInv) appData.inventory = JSON.parse(backupInv);
+            if (backupSales) appData.sales = JSON.parse(backupSales);
+            if (backupPurchases) appData.purchases = JSON.parse(backupPurchases);
+            if (backupEmployees) appData.employees = JSON.parse(backupEmployees);
+
+            saveData('inventory');
+            saveData('sales');
+            saveData('purchases');
+            saveData('employees');
+
+            // Clean up
+            localStorage.removeItem('backup_inventory');
+            localStorage.removeItem('backup_sales');
+            localStorage.removeItem('backup_purchases');
+            localStorage.removeItem('backup_employees');
+            localStorage.removeItem('activeSandbox');
+            activeSandbox = null;
+
+            showNotification('🔄 Data Reset', 'Original default data has been restored successfully.');
+            loadSandbox();
+        }
+
+        function viewSandboxDetails(companyId) {
+            const company = sandboxCompanies.find(c => c.id === companyId);
+            if (!company) return;
+
+            const totalRev = company.sales.reduce((s, o) => s + o.amount, 0);
+            const totalPurchases = company.purchases.reduce((s, o) => s + o.amount, 0);
+            const totalPayroll = company.employees.reduce((s, e) => s + e.salary, 0);
+            const invValue = company.inventory.reduce((s, i) => s + (i.price * i.quantity), 0);
+            const categories = [...new Set(company.inventory.map(i => i.category))];
+            const departments = [...new Set(company.employees.map(e => e.department))];
+            const gstRates = [...new Set(company.inventory.map(i => i.gstRate))].sort((a, b) => a - b);
+
+            const modal = document.getElementById('modal');
+            modal.querySelector('.modal-header h2').textContent = `${company.icon} ${company.name} — Data Preview`;
+            modal.querySelector('.modal-body').innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+                    <div style="background: var(--bg); border-radius: 10px; padding: 14px; text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--text);">${formatCurrency(totalRev).split('.')[0]}</div>
+                        <div style="font-size: 11px; color: var(--text-light);">Total Revenue</div>
+                    </div>
+                    <div style="background: var(--bg); border-radius: 10px; padding: 14px; text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--text);">${formatCurrency(invValue).split('.')[0]}</div>
+                        <div style="font-size: 11px; color: var(--text-light);">Inventory Value</div>
+                    </div>
+                    <div style="background: var(--bg); border-radius: 10px; padding: 14px; text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--text);">${formatCurrency(totalPurchases).split('.')[0]}</div>
+                        <div style="font-size: 11px; color: var(--text-light);">Total Purchases</div>
+                    </div>
+                    <div style="background: var(--bg); border-radius: 10px; padding: 14px; text-align: center;">
+                        <div style="font-size: 20px; font-weight: 800; color: var(--text);">${formatCurrency(totalPayroll).split('.')[0]}</div>
+                        <div style="font-size: 11px; color: var(--text-light);">Annual Payroll</div>
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 12px; font-size: 15px;">📦 Inventory (${company.inventory.length} items)</h4>
+                <div style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+                    <table class="data-table" style="font-size: 12px;">
+                        <thead><tr><th>Product</th><th>SKU</th><th>HSN</th><th>GST</th><th>Qty</th><th>Price</th><th>Category</th></tr></thead>
+                        <tbody>
+                            ${company.inventory.map(item => `
+                                <tr>
+                                    <td>${item.name}</td>
+                                    <td><code style="font-size: 11px;">${item.sku}</code></td>
+                                    <td><code style="font-size: 11px;">${item.hsnCode}</code></td>
+                                    <td>${item.gstRate}%</td>
+                                    <td>${item.quantity}</td>
+                                    <td>${formatCurrency(item.price)}</td>
+                                    <td>${item.category}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="margin-bottom: 8px; font-size: 15px;">👥 Employees (${company.employees.length})</h4>
+                        <div style="display: grid; gap: 8px;">
+                            ${company.employees.map(emp => `
+                                <div style="background: var(--bg); border-radius: 8px; padding: 10px 14px;">
+                                    <div style="font-weight: 600; font-size: 13px;">${emp.name}</div>
+                                    <div style="font-size: 11px; color: var(--text-light);">${emp.position} • ${emp.department} • ${formatCurrency(emp.salary)}/yr</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 8px; font-size: 15px;">📊 Quick Facts</h4>
+                        <div style="display: grid; gap: 8px;">
+                            <div style="background: var(--bg); border-radius: 8px; padding: 10px 14px;">
+                                <div style="font-weight: 600; font-size: 12px;">📂 Categories</div>
+                                <div style="font-size: 12px; color: var(--text-light);">${categories.join(', ')}</div>
+                            </div>
+                            <div style="background: var(--bg); border-radius: 8px; padding: 10px 14px;">
+                                <div style="font-weight: 600; font-size: 12px;">🏢 Departments</div>
+                                <div style="font-size: 12px; color: var(--text-light);">${departments.join(', ')}</div>
+                            </div>
+                            <div style="background: var(--bg); border-radius: 8px; padding: 10px 14px;">
+                                <div style="font-weight: 600; font-size: 12px;">💰 GST Rates Used</div>
+                                <div style="font-size: 12px; color: var(--text-light);">${gstRates.map(r => r + '%').join(', ')}</div>
+                            </div>
+                            <div style="background: var(--bg); border-radius: 8px; padding: 10px 14px;">
+                                <div style="font-weight: 600; font-size: 12px;">🛒 Sales Orders</div>
+                                <div style="font-size: 12px; color: var(--text-light);">${company.sales.length} orders • ${company.sales.filter(s => s.status === 'Completed').length} completed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                ${activeSandbox !== companyId ? `
+                    <div style="margin-top: 24px; text-align: center;">
+                        <button class="sandbox-load-btn primary" style="max-width: 300px; padding: 14px 32px;" onclick="loadSandboxData('${company.id}'); closeModal();">🚀 Load This Company</button>
+                    </div>
+                ` : ''}
+            `;
+            modal.classList.add('active');
         }
 
         // Help function
@@ -4161,7 +5944,7 @@
 
         // Update page loader to include new pages
         const originalLoadPage = loadPage;
-        loadPage = function(page) {
+        loadPage = function (page) {
             if (page === 'practice') {
                 loadPractice();
             } else if (page === 'learning-path') {
@@ -4170,13 +5953,143 @@
                 loadAchievements();
             } else if (page === 'knowledge-base') {
                 loadKnowledgeBase();
+            } else if (page === 'sandbox') {
+                loadSandbox();
             } else {
                 originalLoadPage(page);
             }
-            
+
             // Check achievements after each action
             checkAchievements();
+
+            // Update scenario widget
+            updateScenarioWidget();
+        };
+
+        // Search Functionality
+        function handleGlobalSearch(event) {
+            if (event.key === 'Enter') {
+                const query = event.target.value.toLowerCase();
+                if (query.length < 2) {
+                    showNotification('Search', 'Please enter at least 2 characters');
+                    return;
+                }
+
+                const results = [];
+
+                // Search Inventory
+                appData.inventory.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) || item.sku.toLowerCase().includes(query)) {
+                        results.push({ type: 'Product', title: item.name, detail: item.sku, page: 'inventory' });
+                    }
+                });
+
+                // Search Sales
+                appData.sales.forEach(item => {
+                    if (item.orderNumber.toLowerCase().includes(query) || item.customer.toLowerCase().includes(query)) {
+                        results.push({ type: 'Sale Orders', title: item.orderNumber, detail: item.customer, page: 'sales' });
+                    }
+                });
+
+                // Search Purchases
+                appData.purchases.forEach(item => {
+                    if (item.poNumber.toLowerCase().includes(query) || item.supplier.toLowerCase().includes(query)) {
+                        results.push({ type: 'Purchase Orders', title: item.poNumber, detail: item.supplier, page: 'purchases' });
+                    }
+                });
+
+                // Search Employees
+                appData.employees.forEach(item => {
+                    if (item.name.toLowerCase().includes(query) || item.department.toLowerCase().includes(query)) {
+                        results.push({ type: 'Employee', title: item.name, detail: item.position, page: 'hr' });
+                    }
+                });
+
+                if (results.length > 0) {
+                    showSearchResults(results);
+                } else {
+                    showNotification('No Results', 'No matches found for "' + query + '"');
+                }
+            }
+        }
+
+        function showSearchResults(results) {
+            document.getElementById('modalTitle').textContent = `Search Results (${results.length})`;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="display: grid; gap: 12px;">
+                    ${results.map(r => `
+                        <div class="practice-card" style="padding: 16px; margin: 0; cursor: pointer;" onclick="closeModal(); loadPage('${r.page}')">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="font-weight: 600; font-size: 16px;">${r.title}</div>
+                                <span class="practice-badge beginner">${r.type}</span>
+                            </div>
+                            <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">${r.detail}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        // Settings Save
+        function saveSettings(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                showNotification('Settings Saved', 'Your system preferences have been updated successfully.');
+            }, 1000);
+        }
+
+        // Scenario Widget Management
+        function updateScenarioWidget() {
+            const activeScenario = JSON.parse(localStorage.getItem('activeScenario'));
+            const widget = document.getElementById('scenarioWidget');
+
+            if (activeScenario) {
+                widget.innerHTML = `
+                    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: slideInRight 0.3s ease;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <div style="font-weight: 600; font-size: 14px; color: var(--secondary);">Active Scenario</div>
+                            <button onclick="endScenario()" style="border: none; background: none; cursor: pointer; color: var(--text-light); font-size: 18px;">×</button>
+                        </div>
+                        <div style="font-weight: 700; margin-bottom: 4px;">${activeScenario.title}</div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">${activeScenario.description}</div>
+                        
+                        <div style="background: var(--bg); border-radius: 6px; padding: 8px;">
+                            <div style="font-size: 11px; font-weight: 600; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase;">Current Task</div>
+                            <div style="font-size: 13px;">Explore the section and complete the required actions.</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                widget.innerHTML = '';
+            }
+        }
+
+        function endScenario() {
+            if (confirm('Stop current scenario?')) {
+                localStorage.removeItem('activeScenario');
+                updateScenarioWidget();
+                showNotification('Scenario Ended', 'You can restart it from the Practice page anytime.');
+            }
+        }
+
+        // Update startScenario to save state
+        const originalStartScenario = startScenario;
+        startScenario = function (scenarioId) {
+            const scenario = practiceScenarios.find(s => s.id === scenarioId);
+            localStorage.setItem('activeScenario', JSON.stringify(scenario));
+            updateScenarioWidget();
+            originalStartScenario(scenarioId);
         };
     </script>
 </body>
+
 </html>
